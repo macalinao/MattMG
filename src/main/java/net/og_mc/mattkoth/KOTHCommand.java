@@ -104,50 +104,50 @@ public class KOTHCommand extends PlayerCommandHandler {
 
     private void start(Player player, String[] args) {
         if (!player.hasPermission("mattkoth.admin")) {
-            player.sendMessage(ChatColor.RED + "You can't use this command.");
+            koth.sendGameMessage(player, "You can't use this command.");
             return;
         }
 
         if (args.length <= 1) {
-            player.sendMessage(ChatColor.RED + "Usage: /koth start <arena>");
+            koth.sendGameMessage(player, "Usage: /koth start <arena>");
             return;
         }
 
         Arena arena = koth.getPlugin().getModelManager().getArenas().find(player, args[1]);
         if (arena == null) {
-            player.sendMessage(ChatColor.RED + "That arena does not exist.");
+            koth.sendGameMessage(player, "That arena does not exist.");
             return;
         }
 
         if (koth.getGame() != null) {
-            player.sendMessage(ChatColor.RED + "A game has already been started.");
+            koth.sendGameMessage(player, "A game has already been started.");
             return;
         }
 
         Game<KOTHState> game = koth.getPlugin().getGameManager().createGame(koth, arena);
         if (game == null) {
-            player.sendMessage(ChatColor.RED + "KOTH is not supported on the given arena.");
+            koth.sendGameMessage(player, "KOTH is not supported on the given arena.");
             return;
         }
 
         koth.setGame(game);
         game.getState().setHost(player);
         player.teleport(game.getArena().getNextSpawn());
-        player.sendMessage(ChatColor.GREEN + "KOTH countdown started.");
+        koth.sendGameMessage(player, "KOTH countdown started.");
     }
 
     private void stop(Player player, String[] args) {
         if (!player.hasPermission("mattkoth.admin")) {
-            player.sendMessage(ChatColor.RED + "You can't use this command.");
+            koth.sendGameMessage(player, "You can't use this command.");
             return;
         }
         koth.getGame().stop();
-        player.sendMessage(ChatColor.GREEN + "Game stopped.");
+        koth.sendGameMessage(player, "Game stopped.");
     }
 
     private void forcestart(Player player, String[] args) {
         if (!player.hasPermission("mattkoth.admin")) {
-            player.sendMessage(ChatColor.RED + "You can't use this command.");
+            koth.sendGameMessage(player, "You can't use this command.");
             return;
         }
         Bukkit.getPluginManager().callEvent(new GameStartEvent(koth.getGame()));
@@ -155,12 +155,12 @@ public class KOTHCommand extends PlayerCommandHandler {
 
     private void setregion(Player player, String[] args) {
         if (!player.hasPermission("mattkoth.admin")) {
-            player.sendMessage(ChatColor.RED + "You can't use this command.");
+            koth.sendGameMessage(player, "You can't use this command.");
             return;
         }
 
         if (args.length <= 2) {
-            player.sendMessage(ChatColor.RED + "Usage: /koth setregion <region> <arena>");
+            koth.sendGameMessage(player, "Usage: /koth setregion <region> <arena>");
             return;
         }
 
@@ -172,7 +172,7 @@ public class KOTHCommand extends PlayerCommandHandler {
         }
 
         if (region == null) {
-            player.sendMessage(ChatColor.RED + "Invalid region.");
+            koth.sendGameMessage(player, "Invalid region.");
             return;
         }
 
@@ -186,34 +186,34 @@ public class KOTHCommand extends PlayerCommandHandler {
             }
 
             if (arenaRegion == null) {
-                player.sendMessage(ChatColor.RED + "Invalid arena region.");
+                koth.sendGameMessage(player, "Invalid arena region.");
                 return;
             }
 
             arena = koth.getPlugin().getModelManager().getArenas().create(arenaRegion);
             arena.setName(arenaRegion.getRegion().getId());
-            player.sendMessage(ChatColor.YELLOW + "The arena did not exist, so one was created on that region.");
+            koth.sendGameMessage(player, "The arena did not exist, so one was created on that region.");
         }
 
         arena.setProperty("koth-hill", region.getId());
-        player.sendMessage(ChatColor.GREEN + "The hill of arena " + ChatColor.YELLOW + arena.getId()
+        koth.sendGameMessage(player, "The hill of arena " + ChatColor.YELLOW + arena.getId()
                 + ChatColor.GREEN + " has been set to " + ChatColor.YELLOW + region.getId() + ChatColor.GREEN + ".");
     }
 
     private void setspawn(Player player, String[] args) {
         if (!player.hasPermission("mattkoth.admin")) {
-            player.sendMessage(ChatColor.RED + "You can't use this command.");
+            koth.sendGameMessage(player, "You can't use this command.");
             return;
         }
 
         if (args.length <= 2) {
-            player.sendMessage(ChatColor.RED + "Usage: /koth setspawn <arena> <spawn number>");
+            koth.sendGameMessage(player, "Usage: /koth setspawn <arena> <spawn number>");
             return;
         }
 
         Arena arena = koth.getPlugin().getModelManager().getArenas().find(player, args[1]);
         if (arena == null) {
-            player.sendMessage(ChatColor.RED + "That arena does not exist.");
+            koth.sendGameMessage(player, "That arena does not exist.");
             return;
         }
 
@@ -221,16 +221,16 @@ public class KOTHCommand extends PlayerCommandHandler {
         try {
             spawnNumber = Integer.parseInt(args[2]);
         } catch (NumberFormatException ex) {
-            player.sendMessage(ChatColor.RED + "That spawn id is an invalid number.");
+            koth.sendGameMessage(player, "That spawn id is an invalid number.");
             return;
         }
 
         if (spawnNumber < 1 || spawnNumber > 5) {
-            player.sendMessage(ChatColor.RED + "You can only set spawns 1 through 5.");
+            koth.sendGameMessage(player, "You can only set spawns 1 through 5.");
             return;
         }
 
         arena.setSpawn(spawnNumber - 1, player.getLocation());
-        player.sendMessage(ChatColor.GREEN + "Spawn " + spawnNumber + " has been set.");
+        koth.sendGameMessage(player, "Spawn " + spawnNumber + " has been set.");
     }
 }
