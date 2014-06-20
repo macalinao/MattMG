@@ -92,6 +92,7 @@ public class KOTHCommand extends PlayerCommandHandler {
     private void spectate(Player player, String[] args) {
         if (koth.getGame() == null) {
             koth.sendGameMessage(player, "There is currently no game to spectate.");
+            return;
         }
 
         if (koth.getGame().getState().hasSpectator(player)) {
