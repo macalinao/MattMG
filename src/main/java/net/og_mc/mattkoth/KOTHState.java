@@ -29,6 +29,8 @@ public class KOTHState extends FFAState {
 
     private ItemStack capturerHelmet;
 
+    private boolean over = false;
+
     public Player getHost() {
         return Bukkit.getPlayer(host);
     }
@@ -94,6 +96,14 @@ public class KOTHState extends FFAState {
             participants.add(host);
         }
         return participants;
+    }
+
+    public boolean isOver() {
+        return over;
+    }
+
+    public void setOver() {
+        this.over = true;
     }
 
 }

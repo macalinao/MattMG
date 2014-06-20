@@ -39,6 +39,11 @@ public class KOTHTimer extends BukkitRunnable {
     }
 
     private void updateTime() {
+        if (game.getState().isOver()) {
+            cancel();
+            return;
+        }
+
         int secsLeft = game.getState().remainingTime();
         if (secsLeft <= 7 * 60 && announceCount == 0) {
             announceTime("7 minutes");

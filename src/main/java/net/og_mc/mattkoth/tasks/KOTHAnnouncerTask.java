@@ -32,7 +32,7 @@ public class KOTHAnnouncerTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        if (game.getState().isStarted()) {
+        if (game.getState().isStarted() || game.getState().isOver()) {
             cancel();
             return;
         }

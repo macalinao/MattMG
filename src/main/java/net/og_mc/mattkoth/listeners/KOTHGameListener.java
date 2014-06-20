@@ -93,6 +93,7 @@ public class KOTHGameListener extends GameListener<KOTHState> {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + player.getName());
             }
         }
+        state.setOver();
         getGameplay().getPlugin().getGameManager().removeGame(game);
         ((MattKOTH) getGameplay()).setGame(null);
     }
