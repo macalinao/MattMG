@@ -13,6 +13,7 @@ import com.simplyian.cloudgame.events.GameUnspectateEvent;
 import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.listeners.GameListener;
 import com.simplyian.cloudgame.util.Messaging;
+import me.confuser.barapi.BarAPI;
 import net.og_mc.mattkoth.KOTHState;
 import net.og_mc.mattkoth.MattKOTH;
 import org.bukkit.Bukkit;
@@ -103,6 +104,7 @@ public class KOTHGamePlayerListener extends GameListener<KOTHState> {
         if (!failedKillsCheck && !failedDistanceCheck) {
             game.getState().removePlayer(p);
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + p.getName());
+            BarAPI.removeBar(p);
             game.getGameplay().sendGameMessage(p, "You have left the game.");
         }
     }
@@ -115,6 +117,7 @@ public class KOTHGamePlayerListener extends GameListener<KOTHState> {
         }
         Player p = event.getPlayer();
         game.getState().removePlayer(p);
+        BarAPI.removeBar(p);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + p.getName());
     }
 
@@ -163,6 +166,7 @@ public class KOTHGamePlayerListener extends GameListener<KOTHState> {
             other.showPlayer(p);
         }
         p.setFlying(false);
+        BarAPI.removeBar(p);
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + p.getName());
 
         game.getGameplay().sendGameMessage(p, "You are no longer spectating the game.");
