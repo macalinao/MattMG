@@ -11,6 +11,7 @@ import com.simplyian.cloudgame.events.GameStopEvent;
 import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.listeners.GameListener;
 import com.simplyian.cloudgame.util.Messaging;
+import me.confuser.barapi.BarAPI;
 import net.og_mc.mattkoth.KOTHState;
 import net.og_mc.mattkoth.tasks.KOTHTimer;
 import net.og_mc.mattkoth.MattKOTH;
@@ -85,12 +86,13 @@ public class KOTHGameListener extends GameListener<KOTHState> {
                 state.getCapturer().getInventory().setHelmet(state.getCapturerHelmet());
             }
 
-            for (Player player : state.getPlayers()) {
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + player.getName());
-            }
             for (Player player : state.getSpectators()) {
                 getGameplay().getPlugin().getPlayerStateManager().loadState(player);
+            }
+            for (Player player : state.getParticipants()) {
+                BarAPI.removeBar(player);
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + player.getName());
+
             }
         }
         state.setOver();
