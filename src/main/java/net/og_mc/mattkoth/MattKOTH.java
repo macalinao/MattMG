@@ -77,6 +77,15 @@ public class MattKOTH extends Gameplay<KOTHState> {
     }
 
     /**
+     * Adds the player to the list of people who deserve prizes.
+     *
+     * @param p
+     */
+    public void addPrize(Player p) {
+        prizes.add(p.getUniqueId());
+    }
+
+    /**
      * Tries to redeem a prize.
      *
      * @param p

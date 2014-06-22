@@ -66,6 +66,7 @@ public class KOTHGameListener extends GameListener<KOTHState> {
         } else {
             game.broadcast(ChatColor.YELLOW + winner.getName() + ChatColor.RED + " has won the KOTH!");
             getGameplay().sendGameMessage(winner, "To redeem your prize, type " + ChatColor.YELLOW + "/koth redeem" + ChatColor.RED + "!");
+            ((MattKOTH) getGameplay()).addPrize(winner);
         }
 
         game.stop();
