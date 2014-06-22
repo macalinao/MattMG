@@ -67,6 +67,9 @@ public class KOTHTimer extends BukkitRunnable {
         KOTHState state = game.getState();
         Player capturer = state.getCapturer();
         if (capturer == null || (lastCapturer != null && !lastCapturer.equals(capturer.getUniqueId()))) {
+            for (Player player : state.getParticipants()) {
+                BarAPI.setMessage(player, ChatColor.RED + "Nobody controls the hill!");
+            }
             lastCapturer = (capturer == null) ? null : capturer.getUniqueId();
             return;
         }
