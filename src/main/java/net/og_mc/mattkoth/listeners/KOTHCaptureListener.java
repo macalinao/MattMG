@@ -103,7 +103,12 @@ public class KOTHCaptureListener extends GameListener<KOTHState> {
             return;
         }
 
-        setCapturer(game, (Player) edbe.getDamager());
+        Player capturer = (Player) edbe.getDamager();
+        if (game.getState().hasPlayer(capturer)) {
+            setCapturer(game, capturer);
+        } else {
+            setCapturer(game, null);
+        }
     }
 
     private void setCapturer(Game<KOTHState> game, Player player) {
