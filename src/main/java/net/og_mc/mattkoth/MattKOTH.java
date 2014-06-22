@@ -50,6 +50,9 @@ public class MattKOTH extends Gameplay<KOTHState> {
 
     @Override
     public boolean canUse(Arena arena) {
+        if (arena.getSpawns().isEmpty()) {
+            return false;
+        }
         if (!arena.hasProperty("koth-hill")) {
             return false;
         }
