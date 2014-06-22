@@ -89,10 +89,10 @@ public class KOTHGameListener extends GameListener<KOTHState> {
             for (Player player : state.getSpectators()) {
                 getGameplay().getPlugin().getPlayerStateManager().loadState(player);
             }
+
             for (Player player : state.getParticipants()) {
                 BarAPI.removeBar(player);
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + player.getName());
-
             }
         }
         state.setOver();

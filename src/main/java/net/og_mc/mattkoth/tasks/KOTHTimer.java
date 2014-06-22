@@ -8,6 +8,7 @@ package net.og_mc.mattkoth.tasks;
 import com.simplyian.cloudgame.events.GameEndEvent;
 import com.simplyian.cloudgame.game.Game;
 import java.util.UUID;
+import me.confuser.barapi.BarAPI;
 import net.og_mc.mattkoth.KOTHState;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -25,8 +26,6 @@ public class KOTHTimer extends BukkitRunnable {
     private int announceCount = 0;
 
     private UUID lastCapturer;
-
-    private int captureAnnounceCount = 0;
 
     public KOTHTimer(Game<KOTHState> game) {
         this.game = game;
@@ -68,28 +67,20 @@ public class KOTHTimer extends BukkitRunnable {
         KOTHState state = game.getState();
         Player capturer = state.getCapturer();
         if (capturer == null || (lastCapturer != null && !lastCapturer.equals(capturer.getUniqueId()))) {
-            if (captureAnnounceCount != 0) {
-                captureAnnounceCount = 0;
-            }
             lastCapturer = (capturer == null) ? null : capturer.getUniqueId();
             return;
         }
         lastCapturer = capturer.getUniqueId();
 
         int secsLeft = 120 - state.secondsCaptured();
-        if (secsLeft <= 2 * 60 && captureAnnounceCount == 0) {
-            announceCaptureTime("2 minutes");
-            captureAnnounceCount++;
-        } else if (secsLeft <= 1 * 60 && captureAnnounceCount == 1) {
-            announceCaptureTime("1 minute");
-            captureAnnounceCount++;
-        } else if (secsLeft <= 30 && captureAnnounceCount == 2) {
-            announceCaptureTime("30 seconds");
-            captureAnnounceCount++;
-        } else if (secsLeft <= 10 && captureAnnounceCount == 3) {
-            announceCaptureTime("10 seconds");
-            captureAnnounceCount++;
-        } else if (secsLeft <= 0 && captureAnnounceCount == 4) {
+        for (Player player : state.getParticipants()) {
+            BarAPI.setMessage(player,
+                    ChatColor.GREEN + capturer.getName() + ChatColor.DARK_GREEN
+                    + " wins in " + ChatColor.GREEN + secsLeft + " seconds"
+                    + ChatColor.DARK_GREEN + "!", (float) secsLeft / 120f);
+        }
+
+        if (secsLeft <= 0) {
             Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
             cancel();
         }
