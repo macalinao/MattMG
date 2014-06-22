@@ -65,12 +65,12 @@ public class KOTHCaptureListener extends GameListener<KOTHState> {
         }
 
         Player usurper = e.getEntity().getKiller();
-        if (usurper == null) {
+        if (usurper != null && hill(game).contains(usurper.getLocation())) {
+            setCapturer(game, usurper);
+        } else {
             setCapturer(game, null);
             return;
         }
-
-        setCapturer(game, usurper);
     }
 
     @EventHandler
