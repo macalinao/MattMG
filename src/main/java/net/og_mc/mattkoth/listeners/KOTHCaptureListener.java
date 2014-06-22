@@ -46,7 +46,7 @@ public class KOTHCaptureListener extends GameListener<KOTHState> {
             return;
         }
 
-        Region hill = getGameplay().getPlugin().getModelManager().getRegions().findById(game.getArena().getProperty("koth-hill").toString());
+        Region hill = hill(game);
         if (!hill.contains(e.getTo())) {
             return;
         }
@@ -86,7 +86,7 @@ public class KOTHCaptureListener extends GameListener<KOTHState> {
             return;
         }
 
-        Region hill = getGameplay().getPlugin().getModelManager().getRegions().findById(game.getArena().getProperty("koth-hill").toString());
+        Region hill = hill(game);
         if (hill.contains(e.getTo())) {
             return;
         }
@@ -104,11 +104,15 @@ public class KOTHCaptureListener extends GameListener<KOTHState> {
         }
 
         Player capturer = (Player) edbe.getDamager();
-        if (game.getState().hasPlayer(capturer)) {
+        if (game.getState().hasPlayer(capturer) && hill.contains(capturer.getLocation())) {
             setCapturer(game, capturer);
         } else {
             setCapturer(game, null);
         }
+    }
+
+    private Region hill(Game<KOTHState> game) {
+        return getGameplay().getPlugin().getModelManager().getRegions().findById(game.getArena().getProperty("koth-hill").toString());
     }
 
     private void setCapturer(Game<KOTHState> game, Player player) {
