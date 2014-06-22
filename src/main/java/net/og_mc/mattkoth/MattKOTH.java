@@ -12,10 +12,15 @@ import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.Gameplay;
 import com.simplyian.cloudgame.model.arena.Arena;
 import com.simplyian.cloudgame.model.region.Region;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 import net.og_mc.mattkoth.listeners.KOTHCaptureListener;
 import net.og_mc.mattkoth.listeners.KOTHCommandListener;
 import net.og_mc.mattkoth.listeners.KOTHGameListener;
 import net.og_mc.mattkoth.listeners.KOTHRespawnListener;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -24,6 +29,8 @@ import net.og_mc.mattkoth.listeners.KOTHRespawnListener;
 public class MattKOTH extends Gameplay<KOTHState> {
 
     private Game<KOTHState> game;
+
+    private Set<UUID> prizes = new HashSet<>();
 
     public MattKOTH(CloudGame plugin) {
         super(plugin, "KOTH");
@@ -67,5 +74,20 @@ public class MattKOTH extends Gameplay<KOTHState> {
     @Override
     public void setup(Game<KOTHState> g) {
         (new KOTHAnnouncerTask(g)).runTaskTimer(getPlugin(), 2L, 2L);
+    }
+
+    /**
+     * Tries to redeem a prize.
+     *
+     * @param p
+     * @return
+     */
+    public boolean redeemPrize(Player p) {
+        if (!prizes.contains(p.getUniqueId())) {
+            return false;
+        }
+        prizes.remove(p.getUniqueId());
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ccrates give 3 " + p.getName() + " 3");
+        return true;
     }
 }

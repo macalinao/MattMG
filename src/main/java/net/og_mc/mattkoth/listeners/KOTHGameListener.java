@@ -65,7 +65,7 @@ public class KOTHGameListener extends GameListener<KOTHState> {
             game.broadcast("Game over! Nobody won!");
         } else {
             game.broadcast(ChatColor.YELLOW + winner.getName() + ChatColor.RED + " has won the KOTH!");
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ccrates give 3 " + winner.getName() + " 3");
+            getGameplay().sendGameMessage(winner, "To redeem your prize, type " + ChatColor.YELLOW + "/koth redeem" + ChatColor.RED + "!");
         }
 
         game.stop();

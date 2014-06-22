@@ -46,6 +46,13 @@ public class KOTHCommand extends PlayerCommandHandler {
             case "leave":
                 leave(player, args);
                 return;
+            case "spectate":
+                spectate(player, args);
+                return;
+            case "redeem":
+                redeem(player, args);
+                return;
+
             case "start":
                 start(player, args);
                 return;
@@ -61,9 +68,6 @@ public class KOTHCommand extends PlayerCommandHandler {
             case "setspawn":
                 setspawn(player, args);
                 return;
-            case "spectate":
-                spectate(player, args);
-                return;
         }
 
         noArgs(player);
@@ -71,12 +75,16 @@ public class KOTHCommand extends PlayerCommandHandler {
 
     private void noArgs(Player player) {
         Messaging.sendBanner(player,
-                "/koth join - Join the koth",
-                "/koth leave - Leaves the koth",
-                "/koth spectate - Spectates the current koth");
+                "/koth join - Join the KOTH",
+                "/koth leave - Leaves the KOTH",
+                "/koth spectate - Spectates the KOTH",
+                "/koth redeem - Redeems a KOTH prize");
         if (player.hasPermission("mattkoth.admin")) {
-            Messaging.sendBanner(player, "/koth start - Starts a KOTH if there isn't already one going on",
-                    "/koth setregion - Set the koth region",
+            Messaging.sendBanner(player,
+                    "/koth start - Starts a KOTH if there isn't already one going on",
+                    "/koth stop - Stops a KOTH in progress",
+                    "/koth forcestart - Bypasses the KOTH countdown",
+                    "/koth setregion - Set the KOTH region",
                     "/koth setspawn - Sets a spawn on the koth map");
         }
     }
@@ -148,6 +156,10 @@ public class KOTHCommand extends PlayerCommandHandler {
     private void forcestart(Player player, String[] args) {
         if (!player.hasPermission("mattkoth.admin")) {
             koth.sendGameMessage(player, "You can't use this command.");
+            return;
+        }
+        if (koth.getGame() == null) {
+            koth.sendGameMessage(player, "There isn't a KOTH currently going on.");
             return;
         }
         Bukkit.getPluginManager().callEvent(new GameStartEvent(koth.getGame()));
@@ -232,5 +244,19 @@ public class KOTHCommand extends PlayerCommandHandler {
 
         arena.setSpawn(spawnNumber - 1, player.getLocation());
         koth.sendGameMessage(player, "Spawn " + spawnNumber + " has been set.");
+    }
+
+    private void redeem(Player player, String[] args) {
+        if (koth.getGame() != null && koth.getGame().getState().hasPlayer(player)) {
+            koth.sendGameMessage(player, "You can't use this command in game!");
+            return;
+        }
+
+        if (!koth.redeemPrize(player)) {
+            koth.sendGameMessage(player, "You don't have a prize to redeem!");
+            return;
+        }
+
+        koth.sendGameMessage(player, "Enjoy your prize!");
     }
 }
