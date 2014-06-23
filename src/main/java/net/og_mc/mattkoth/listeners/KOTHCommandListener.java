@@ -30,4 +30,13 @@ public class KOTHCommandListener extends GameListener<KOTHState> {
         }
     }
 
+    @EventHandler
+    public void onSpectatorCommandPreprocess(PlayerCommandPreprocessEvent e) {
+        Game<KOTHState> game = gameSpectated(e.getPlayer());
+        if (game != null && game.getState().isStarted()
+                && !e.getMessage().startsWith("/koth") && !e.getMessage().startsWith("/msg") && !e.getMessage().startsWith("/r ")) {
+            e.setCancelled(true);
+        }
+    }
+
 }
