@@ -90,10 +90,18 @@ public class KOTHCommand extends PlayerCommandHandler {
     }
 
     private void join(Player player, String[] args) {
+        if (koth.getGame() == null) {
+            koth.sendGameMessage(player, "There isn't a game going on right now.");
+            return;
+        }
         Bukkit.getPluginManager().callEvent(new GameJoinEvent(koth.getGame(), player));
     }
 
     private void leave(Player player, String[] args) {
+        if (koth.getGame() == null) {
+            koth.sendGameMessage(player, "There isn't a game going on right now.");
+            return;
+        }
         Bukkit.getPluginManager().callEvent(new GameLeaveEvent(koth.getGame(), player));
     }
 
@@ -149,6 +157,12 @@ public class KOTHCommand extends PlayerCommandHandler {
             koth.sendGameMessage(player, "You can't use this command.");
             return;
         }
+
+        if (koth.getGame() == null) {
+            koth.sendGameMessage(player, "There isn't a game going on right now.");
+            return;
+        }
+
         koth.getGame().stop();
         koth.sendGameMessage(player, "Game stopped.");
     }
@@ -158,10 +172,12 @@ public class KOTHCommand extends PlayerCommandHandler {
             koth.sendGameMessage(player, "You can't use this command.");
             return;
         }
+
         if (koth.getGame() == null) {
-            koth.sendGameMessage(player, "There isn't a KOTH currently going on.");
+            koth.sendGameMessage(player, "There isn't a game going on right now.");
             return;
         }
+
         Bukkit.getPluginManager().callEvent(new GameStartEvent(koth.getGame()));
     }
 
