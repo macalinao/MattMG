@@ -57,7 +57,8 @@ public class KOTHTimer extends BukkitRunnable {
             announceTime("1 minute");
             announceCount++;
         } else if (secsLeft <= 0 * 60 && announceCount == 4
-                && game.getState().secondsCaptured() != -1) { // Overtime check
+                && (game.getState().secondsCaptured() == -1
+                || game.getState().secondsCaptured() >= 120)) { // Overtime check
             Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
             cancel();
         }
