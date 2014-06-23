@@ -51,7 +51,7 @@ public class KOTHTimer extends BukkitRunnable {
             announceTime("5 minutes");
             announceCount++;
         } else if (secsLeft <= 3 * 60 && announceCount == 2) {
-            announceTime("3 minute");
+            announceTime("3 minutes");
             announceCount++;
         } else if (secsLeft <= 1 * 60 && announceCount == 3) {
             announceTime("1 minute");
