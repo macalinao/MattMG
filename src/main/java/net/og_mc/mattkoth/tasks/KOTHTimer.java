@@ -9,6 +9,7 @@ import com.simplyian.cloudgame.events.GameEndEvent;
 import com.simplyian.cloudgame.game.Game;
 import java.util.UUID;
 import me.confuser.barapi.BarAPI;
+import static net.og_mc.mattkoth.KOTHConstants.CAPTURE_WIN_SECONDS;
 import net.og_mc.mattkoth.KOTHState;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -57,8 +58,7 @@ public class KOTHTimer extends BukkitRunnable {
             announceTime("1 minute");
             announceCount++;
         } else if (secsLeft <= 0 * 60 && announceCount == 4
-                && (game.getState().secondsCaptured() == -1
-                || game.getState().secondsCaptured() >= 120)) { // Overtime check
+                && !game.getState().isOvertime()) {
             Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
             cancel();
         }
@@ -76,12 +76,12 @@ public class KOTHTimer extends BukkitRunnable {
         }
         lastCapturer = capturer.getUniqueId();
 
-        int secsLeft = 120 - state.secondsCaptured();
+        int secsLeft = CAPTURE_WIN_SECONDS - state.secondsCaptured();
         for (Player player : state.getParticipants()) {
             BarAPI.setMessage(player,
                     ChatColor.GREEN + capturer.getName() + ChatColor.DARK_GREEN
                     + " wins in " + ChatColor.GREEN + secsLeft + " seconds"
-                    + ChatColor.DARK_GREEN + "!", (float) secsLeft / 120f);
+                    + ChatColor.DARK_GREEN + "!", ((float) secsLeft) / ((float) CAPTURE_WIN_SECONDS));
         }
 
         if (secsLeft <= 0) {

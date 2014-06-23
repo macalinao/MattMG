@@ -9,6 +9,7 @@ import com.simplyian.cloudgame.gameplay.states.FFAState;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import static net.og_mc.mattkoth.KOTHConstants.CAPTURE_WIN_SECONDS;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -71,6 +72,10 @@ public class KOTHState extends FFAState {
             return -1;
         }
         return (int) ((System.currentTimeMillis() - captureStart) / 1000);
+    }
+
+    public boolean isOvertime() {
+        return captureStart != -1 && captureStart < CAPTURE_WIN_SECONDS;
     }
 
     public int remainingTime() {
