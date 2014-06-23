@@ -7,7 +7,9 @@ package net.og_mc.mattkoth;
 
 import com.simplyian.cloudgame.gameplay.states.FFAState;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import static net.og_mc.mattkoth.KOTHConstants.CAPTURE_WIN_SECONDS;
 import org.bukkit.Bukkit;
@@ -31,6 +33,8 @@ public class KOTHState extends FFAState {
     private ItemStack capturerHelmet;
 
     private boolean over = false;
+
+    private Map<UUID, Integer> secondsCaptured = new HashMap<>();
 
     public Player getHost() {
         return Bukkit.getPlayer(host);
@@ -57,6 +61,15 @@ public class KOTHState extends FFAState {
     }
 
     public void setCapturer(Player capturer) {
+        // Store tracked capture seconds
+        if (this.capturer != null) {
+            if (secondsCaptured.containsKey(this.capturer)) {
+                secondsCaptured.put(this.capturer, lastSecs());
+            } else {
+                secondsCaptured.put(this.capturer, secondsCaptured.get(host) + lastSecs());
+            }
+        }
+
         if (capturer == null) {
             this.capturer = null;
             this.captureStart = -1;
@@ -68,14 +81,23 @@ public class KOTHState extends FFAState {
     }
 
     public int secondsCaptured() {
-        if (captureStart == -1) {
+        if (capturer == null) {
             return -1;
         }
+        Integer store = secondsCaptured.get(capturer);
+        if (store == null) {
+            secondsCaptured.put(capturer, 0);
+            store = 0;
+        }
+        return store + lastSecs();
+    }
+
+    public int lastSecs() {
         return (int) ((System.currentTimeMillis() - captureStart) / 1000);
     }
 
     public boolean isOvertime() {
-        return captureStart != -1 && captureStart < CAPTURE_WIN_SECONDS;
+        return secondsCaptured() != -1 && secondsCaptured() >= CAPTURE_WIN_SECONDS;
     }
 
     public int remainingTime() {
