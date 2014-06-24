@@ -7,6 +7,7 @@ package net.og_mc.mattkoth.tasks;
 
 import com.simplyian.cloudgame.events.GameEndEvent;
 import com.simplyian.cloudgame.game.Game;
+import com.simplyian.cloudgame.gameplay.GameTask;
 import java.util.UUID;
 import me.confuser.barapi.BarAPI;
 import static net.og_mc.mattkoth.KOTHConstants.CAPTURE_WIN_SECONDS;
@@ -14,13 +15,12 @@ import net.og_mc.mattkoth.KOTHState;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  *
  * @author ian
  */
-public class KOTHTimer extends BukkitRunnable {
+public class KOTHTimer extends GameTask<KOTHState> {
 
     private final Game<KOTHState> game;
 
@@ -29,19 +29,35 @@ public class KOTHTimer extends BukkitRunnable {
     private UUID lastCapturer;
 
     public KOTHTimer(Game<KOTHState> game) {
+        super(game);
         this.game = game;
     }
 
     @Override
     public void run() {
-        updateCaptureTime();
-        updateTime();
-    }
+        KOTHState state = game.getState();
 
-    private void updateTime() {
-        if (game.getState().isOver()) {
-            cancel();
+        // Put this up here so we can get rid of the bar
+        int captureSecsLeft = CAPTURE_WIN_SECONDS - state.secondsCaptured();
+        if (captureSecsLeft <= 0) {
+            Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
             return;
+        }
+
+        Player capturer = state.getCapturer();
+        if (capturer == null || (lastCapturer != null && !lastCapturer.equals(capturer.getUniqueId()))) {
+            for (Player player : state.getParticipants()) {
+                BarAPI.setMessage(player, ChatColor.RED + "Nobody controls the hill!");
+            }
+            lastCapturer = (capturer == null) ? null : capturer.getUniqueId();
+        } else {
+            lastCapturer = capturer.getUniqueId();
+            for (Player player : state.getParticipants()) {
+                BarAPI.setMessage(player,
+                        ChatColor.GREEN + capturer.getName() + ChatColor.DARK_GREEN
+                        + " wins in " + ChatColor.GREEN + captureSecsLeft + " seconds"
+                        + ChatColor.DARK_GREEN + "!", ((float) captureSecsLeft * 100) / ((float) CAPTURE_WIN_SECONDS));
+            }
         }
 
         int secsLeft = game.getState().remainingTime();
@@ -60,37 +76,8 @@ public class KOTHTimer extends BukkitRunnable {
         } else if (secsLeft <= 0 * 60 && announceCount == 4
                 && !game.getState().isCapturing()) {
             Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
-            cancel();
-        }
-    }
-
-    private void updateCaptureTime() {
-        KOTHState state = game.getState();
-
-        // Put this up here so we can get rid of the bar
-        int secsLeft = CAPTURE_WIN_SECONDS - state.secondsCaptured();
-        if (secsLeft <= 0) {
-            Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
-            cancel();
-        }
-
-        Player capturer = state.getCapturer();
-        if (capturer == null || (lastCapturer != null && !lastCapturer.equals(capturer.getUniqueId()))) {
-            for (Player player : state.getParticipants()) {
-                BarAPI.setMessage(player, ChatColor.RED + "Nobody controls the hill!");
-            }
-            lastCapturer = (capturer == null) ? null : capturer.getUniqueId();
             return;
         }
-        lastCapturer = capturer.getUniqueId();
-
-        for (Player player : state.getParticipants()) {
-            BarAPI.setMessage(player,
-                    ChatColor.GREEN + capturer.getName() + ChatColor.DARK_GREEN
-                    + " wins in " + ChatColor.GREEN + secsLeft + " seconds"
-                    + ChatColor.DARK_GREEN + "!", ((float) secsLeft * 100) / ((float) CAPTURE_WIN_SECONDS));
-        }
-        return;
     }
 
     private void announceTime(String time) {
