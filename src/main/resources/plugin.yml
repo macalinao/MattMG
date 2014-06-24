@@ -8,38 +8,10 @@ main: net.og_mc.mattkoth.MattKOTHPlugin
 depend: [WorldGuard]
 
 commands:
-    arenacreate:
-        description: Creates an arena
-        permission: mattkoth.admin
-        usage: /arenacreate <region> [world=current]
-    arenadelete:
-        description: Deletes an arena
-        permission: mattkoth.admin
-        usage: /arenadelete
-    arenainfo:
-        description: Gets information about the arena
-        permission: mattkoth.admin
-        usage: /arenainfo
-    arenalistspawns:
-        description: Lists the spawns of an arena.
-        permission: mattkoth.admin
-        usage: /arenalistspawns
-    arenareload:
-        description: Reloads all arenas from the arenas.yml
-        permission: mattkoth.admin
-        usage: /arenareload
-    arenaresetspawns:
-        description: Resets the spawns of an arena
-        permission: mattkoth.admin
-        usage: /arenaresetspawns
-    arenasetname:
-        description: Sets the name of an arena
-        permission: mattkoth.admin
-        usage: /arenasetname
-    arenasetspawn:
-        description: Sets a spawn of an arena
-        permission: mattkoth.admin
-        usage: /arenasetspawn
+    arena:
+        description: Allows management of arenas
+        permission: cloudgame.admin
+        usage: /arena <subcommand> [args]
 
     koth:
         description: KOTH command
