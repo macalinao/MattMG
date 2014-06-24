@@ -6,18 +6,7 @@
 package net.og_mc.mattkoth.commands;
 
 import com.simplyian.cloudgame.command.TreeCommandHandler;
-import com.simplyian.cloudgame.util.Messaging;
 import net.og_mc.mattkoth.MattKOTH;
-import net.og_mc.mattkoth.commands.KOTHForceStartCommand;
-import net.og_mc.mattkoth.commands.KOTHJoinCommand;
-import net.og_mc.mattkoth.commands.KOTHLeaveCommand;
-import net.og_mc.mattkoth.commands.KOTHRedeemCommand;
-import net.og_mc.mattkoth.commands.KOTHSetRegionCommand;
-import net.og_mc.mattkoth.commands.KOTHSetSpawnCommand;
-import net.og_mc.mattkoth.commands.KOTHSpectateCommand;
-import net.og_mc.mattkoth.commands.KOTHStartCommand;
-import net.og_mc.mattkoth.commands.KOTHStopCommand;
-import org.bukkit.entity.Player;
 
 /**
  * The main command for all that shizzzzle
