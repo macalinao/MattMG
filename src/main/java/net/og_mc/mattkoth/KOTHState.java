@@ -96,8 +96,8 @@ public class KOTHState extends FFAState {
         return (int) ((System.currentTimeMillis() - captureStart) / 1000);
     }
 
-    public boolean isOvertime() {
-        return secondsCaptured() != -1 && secondsCaptured() >= CAPTURE_WIN_SECONDS;
+    public boolean isCapturing() {
+        return secondsCaptured() != -1;
     }
 
     public int remainingTime() {
