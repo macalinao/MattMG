@@ -96,7 +96,7 @@ public class MattKOTH extends Gameplay<KOTHState> {
             return false;
         }
         prizes.remove(p.getUniqueId());
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "crates give 3 " + p.getName() + " 3");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ccrates give 3 " + p.getName() + " 3");
         return true;
     }
 }
