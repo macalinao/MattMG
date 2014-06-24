@@ -5,6 +5,7 @@
  */
 package net.og_mc.mattkoth;
 
+import net.og_mc.mattkoth.commands.KOTHCommand;
 import net.og_mc.mattkoth.tasks.KOTHAnnouncerTask;
 import net.og_mc.mattkoth.listeners.KOTHGamePlayerListener;
 import com.simplyian.cloudgame.CloudGame;
