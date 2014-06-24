@@ -64,9 +64,9 @@ public class KOTHState extends FFAState {
         // Store tracked capture seconds
         if (this.capturer != null) {
             if (secondsCaptured.containsKey(this.capturer)) {
-                secondsCaptured.put(this.capturer, lastSecs());
-            } else {
                 secondsCaptured.put(this.capturer, secondsCaptured.get(host) + lastSecs());
+            } else {
+                secondsCaptured.put(this.capturer, lastSecs());
             }
         }
 
