@@ -81,7 +81,7 @@ public class KOTHTimer extends BukkitRunnable {
             BarAPI.setMessage(player,
                     ChatColor.GREEN + capturer.getName() + ChatColor.DARK_GREEN
                     + " wins in " + ChatColor.GREEN + secsLeft + " seconds"
-                    + ChatColor.DARK_GREEN + "!", ((float) secsLeft) / ((float) CAPTURE_WIN_SECONDS));
+                    + ChatColor.DARK_GREEN + "!", ((float) secsLeft * 100) / ((float) CAPTURE_WIN_SECONDS));
         }
 
         if (secsLeft <= 0) {
