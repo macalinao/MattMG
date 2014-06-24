@@ -29,6 +29,7 @@ public class KOTHCommand extends PlayerCommandHandler {
     private final MattKOTH koth;
 
     public KOTHCommand(MattKOTH koth) {
+        super("koth");
         this.koth = koth;
     }
 
