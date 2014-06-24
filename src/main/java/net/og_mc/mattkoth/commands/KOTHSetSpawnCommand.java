@@ -6,12 +6,8 @@
 package net.og_mc.mattkoth.commands;
 
 import com.simplyian.cloudgame.command.PlayerCommandHandler;
-import com.simplyian.cloudgame.events.GameJoinEvent;
-import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.model.arena.Arena;
-import net.og_mc.mattkoth.KOTHState;
 import net.og_mc.mattkoth.MattKOTH;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 /**
@@ -27,6 +23,7 @@ public class KOTHSetSpawnCommand extends PlayerCommandHandler {
         this.koth = koth;
         setDescription("Sets a spawn on the KOTH map.");
         setUsage("/koth setspawn <hill region> <main region>");
+        setPermission("mattkoth.admin");
     }
 
     @Override

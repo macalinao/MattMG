@@ -6,12 +6,9 @@
 package net.og_mc.mattkoth.commands;
 
 import com.simplyian.cloudgame.command.PlayerCommandHandler;
-import com.simplyian.cloudgame.events.GameJoinEvent;
-import com.simplyian.cloudgame.events.GameLeaveEvent;
 import com.simplyian.cloudgame.model.arena.Arena;
 import com.simplyian.cloudgame.model.region.Region;
 import net.og_mc.mattkoth.MattKOTH;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -28,6 +25,7 @@ public class KOTHSetRegionCommand extends PlayerCommandHandler {
         this.koth = koth;
         setDescription("Sets the KOTH region.");
         setUsage("/koth setregion <region> <arena>");
+        setPermission("mattkoth.admin");
     }
 
     @Override

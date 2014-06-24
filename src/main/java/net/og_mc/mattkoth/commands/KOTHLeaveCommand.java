@@ -6,7 +6,6 @@
 package net.og_mc.mattkoth.commands;
 
 import com.simplyian.cloudgame.command.PlayerCommandHandler;
-import com.simplyian.cloudgame.events.GameJoinEvent;
 import com.simplyian.cloudgame.events.GameLeaveEvent;
 import net.og_mc.mattkoth.MattKOTH;
 import org.bukkit.Bukkit;

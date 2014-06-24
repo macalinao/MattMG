@@ -6,12 +6,8 @@
 package net.og_mc.mattkoth.commands;
 
 import com.simplyian.cloudgame.command.PlayerCommandHandler;
-import com.simplyian.cloudgame.events.GameJoinEvent;
 import com.simplyian.cloudgame.events.GameSpectateEvent;
 import com.simplyian.cloudgame.events.GameUnspectateEvent;
-import com.simplyian.cloudgame.game.Game;
-import com.simplyian.cloudgame.model.arena.Arena;
-import net.og_mc.mattkoth.KOTHState;
 import net.og_mc.mattkoth.MattKOTH;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

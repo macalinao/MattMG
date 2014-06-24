@@ -12,7 +12,6 @@ import com.simplyian.cloudgame.model.region.Region;
 import net.og_mc.mattkoth.KOTHState;
 import net.og_mc.mattkoth.MattKOTH;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
