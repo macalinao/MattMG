@@ -7,40 +7,34 @@ package net.og_mc.mattkoth.listeners;
 
 import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.listeners.GameListener;
+import me.confuser.barapi.BarAPI;
 import net.og_mc.mattkoth.KOTHState;
 import net.og_mc.mattkoth.MattKOTH;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 
 /**
  *
  * @author ian
  */
-public class KOTHRespawnListener extends GameListener<KOTHState> {
+public class KOTHDeathListener extends GameListener<KOTHState> {
 
-    public KOTHRespawnListener(MattKOTH koth) {
+    public KOTHDeathListener(MattKOTH koth) {
         super(koth);
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent e) {
-        Game<KOTHState> game = game(e.getEntity());
+        Player p = e.getEntity();
+        Game<KOTHState> game = game(p);
         if (game == null || !game.getState().isStarted()) {
             return;
         }
 
-        e.getEntity().teleport(game.getArena().getNextSpawn());
-    }
-
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerRespawn(PlayerRespawnEvent e) {
-        Game<KOTHState> game = game(e.getPlayer());
-        if (game == null || !game.getState().isStarted()) {
-            return;
-        }
-
-        e.setRespawnLocation(game.getArena().getNextSpawn());
+        game.getState().removePlayer(p);
+        BarAPI.removeBar(p);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + p.getName());
     }
 }

@@ -18,7 +18,7 @@ import net.og_mc.mattkoth.listeners.KOTHCaptureListener;
 import net.og_mc.mattkoth.listeners.KOTHCommandListener;
 import net.og_mc.mattkoth.listeners.KOTHGameListener;
 import net.og_mc.mattkoth.listeners.KOTHGamePlayerListener;
-import net.og_mc.mattkoth.listeners.KOTHRespawnListener;
+import net.og_mc.mattkoth.listeners.KOTHDeathListener;
 import net.og_mc.mattkoth.tasks.KOTHAnnouncerTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -45,7 +45,7 @@ public class MattKOTH extends Gameplay<KOTHState> {
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHCommandListener(this), getPlugin());
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHGameListener(this), getPlugin());
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHGamePlayerListener(this), getPlugin());
-        getPlugin().getServer().getPluginManager().registerEvents(new KOTHRespawnListener(this), getPlugin());
+        getPlugin().getServer().getPluginManager().registerEvents(new KOTHDeathListener(this), getPlugin());
     }
 
     public Game<KOTHState> getGame() {
