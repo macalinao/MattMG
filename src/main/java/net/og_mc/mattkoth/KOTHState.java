@@ -103,7 +103,7 @@ public class KOTHState extends FFAState {
 
     public int remainingTime() {
         int secsElapsed = (((int) (System.currentTimeMillis() - start)) / 1000);
-        return (10 * 60) - secsElapsed;
+        return (mins * 60) - secsElapsed;
     }
 
     public ItemStack getCapturerHelmet() {

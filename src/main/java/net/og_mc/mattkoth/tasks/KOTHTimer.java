@@ -61,19 +61,47 @@ public class KOTHTimer extends GameTask<KOTHState> {
         }
 
         int secsLeft = game.getState().remainingTime();
-        if (secsLeft <= 7 * 60 && announceCount == 0) {
-            announceTime("7 minutes");
+        if (secsLeft <= 25 * 60 && announceCount == 0) {
+            if (game.getState().getMins() > 25) {
+                announceTime("25 minutes");
+            }
             announceCount++;
-        } else if (secsLeft <= 5 * 60 && announceCount == 1) {
-            announceTime("5 minutes");
+        } else if (secsLeft <= 25 * 60 && announceCount == 1) {
+            if (game.getState().getMins() > 20) {
+                announceTime("20 minutes");
+            }
             announceCount++;
-        } else if (secsLeft <= 3 * 60 && announceCount == 2) {
-            announceTime("3 minutes");
+        } else if (secsLeft <= 25 * 60 && announceCount == 2) {
+            if (game.getState().getMins() > 15) {
+                announceTime("15 minutes");
+            }
             announceCount++;
-        } else if (secsLeft <= 1 * 60 && announceCount == 3) {
-            announceTime("1 minute");
+        } else if (secsLeft <= 25 * 60 && announceCount == 3) {
+            if (game.getState().getMins() > 10) {
+                announceTime("10 minutes");
+            }
             announceCount++;
-        } else if (secsLeft <= 0 * 60 && announceCount == 4
+        } else if (secsLeft <= 7 * 60 && announceCount == 4) {
+            if (game.getState().getMins() > 7) {
+                announceTime("7 minutes");
+            }
+            announceCount++;
+        } else if (secsLeft <= 5 * 60 && announceCount == 5) {
+            if (game.getState().getMins() > 5) {
+                announceTime("5 minutes");
+            }
+            announceCount++;
+        } else if (secsLeft <= 3 * 60 && announceCount == 6) {
+            if (game.getState().getMins() > 3) {
+                announceTime("3 minutes");
+            }
+            announceCount++;
+        } else if (secsLeft <= 1 * 60 && announceCount == 7) {
+            if (game.getState().getMins() > 1) {
+                announceTime("1 minute");
+            }
+            announceCount++;
+        } else if (secsLeft <= 0 * 60 && announceCount == 8
                 && !game.getState().isCapturing()) {
             Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
             return;
