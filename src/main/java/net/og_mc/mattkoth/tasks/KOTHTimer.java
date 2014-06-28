@@ -66,17 +66,17 @@ public class KOTHTimer extends GameTask<KOTHState> {
                 announceTime("25 minutes");
             }
             announceCount++;
-        } else if (secsLeft <= 25 * 60 && announceCount == 1) {
+        } else if (secsLeft <= 20 * 60 && announceCount == 1) {
             if (game.getState().getMins() > 20) {
                 announceTime("20 minutes");
             }
             announceCount++;
-        } else if (secsLeft <= 25 * 60 && announceCount == 2) {
+        } else if (secsLeft <= 15 * 60 && announceCount == 2) {
             if (game.getState().getMins() > 15) {
                 announceTime("15 minutes");
             }
             announceCount++;
-        } else if (secsLeft <= 25 * 60 && announceCount == 3) {
+        } else if (secsLeft <= 10 * 60 && announceCount == 3) {
             if (game.getState().getMins() > 10) {
                 announceTime("10 minutes");
             }
