@@ -35,6 +35,8 @@ public class KOTHState extends FFAState {
 
     private Map<UUID, Integer> secondsCaptured = new HashMap<>();
 
+    private int mins;
+
     public Player getHost() {
         return Bukkit.getPlayer(host);
     }
@@ -130,6 +132,14 @@ public class KOTHState extends FFAState {
 
     public void setOver() {
         this.over = true;
+    }
+
+    public int getMins() {
+        return mins;
+    }
+
+    public void setMins(int mins) {
+        this.mins = mins;
     }
 
 }

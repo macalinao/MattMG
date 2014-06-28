@@ -36,7 +36,7 @@ public class KOTHStartCommand extends PlayerCommandHandler {
         }
 
         if (args.length == 0) {
-            koth.sendGameMessage(player, "Usage: /koth start <arena>");
+            koth.sendGameMessage(player, "Usage: /koth start <arena> [mins = 10]");
             return;
         }
 
@@ -57,10 +57,21 @@ public class KOTHStartCommand extends PlayerCommandHandler {
             return;
         }
 
+        int mins = 10;
+        if (args.length >= 2) {
+            try {
+                mins = Integer.parseInt(args[1]);
+            } catch (NumberFormatException ex) {
+                koth.sendGameMessage(player, "The number of minutes you specified isn't a valid number.");
+                return;
+            }
+        }
+
         koth.setGame(game);
         game.getState().setHost(player);
+        game.getState().setMins(mins);
         player.teleport(game.getArena().getNextSpawn());
-        koth.sendGameMessage(player, "KOTH countdown started.");
+        koth.sendGameMessage(player, "KOTH countdown started for a " + mins + " minute KOTH game.");
     }
 
 }
