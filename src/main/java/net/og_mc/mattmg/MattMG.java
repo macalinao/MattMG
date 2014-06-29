@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.og_mc.mattkoth;
+package net.og_mc.mattmg;
 
+import net.og_mc.mattkoth.MattKOTH;
 import com.simplyian.cloudgame.CloudGame;
 
 /**
  *
  * @author ian
  */
-public class MattKOTHPlugin extends CloudGame {
+public class MattMG extends CloudGame {
 
     @Override
     public void addGameplays() {

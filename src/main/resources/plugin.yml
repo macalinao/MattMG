@@ -1,10 +1,10 @@
-name: MattKOTH
-description: King of the hill minigame.
+name: MattMG
+description: OG's minigames.
 version: $version
 author: AlbireoX
 website: http://og-mc.net/
 
-main: net.og_mc.mattkoth.MattKOTHPlugin
+main: net.og_mc.mattmg.MattMG
 depend: [WorldGuard]
 
 commands:
