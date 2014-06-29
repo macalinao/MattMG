@@ -10,6 +10,7 @@ import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
 import com.simplyian.cloudgame.gameplay.listeners.GameListener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.potion.PotionEffectType;
 
 /**
  *
@@ -28,6 +29,7 @@ public class LMSDeathListener extends GameListener<HostedFFAState> {
             return;
         }
 
+        e.getEntity().removePotionEffect(PotionEffectType.INVISIBILITY);
         game.getGameplay().sendGameMessage(e.getEntity(), "You died with " + game.getState().getPlayers().size() + " left!");
     }
 

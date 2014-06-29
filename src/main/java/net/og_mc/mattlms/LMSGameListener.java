@@ -19,6 +19,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 /**
  *
@@ -46,6 +48,7 @@ public class LMSGameListener extends GameListener<HostedFFAState> {
         for (Player p : state.getPlayers()) {
             Location spawn = game.getArena().getNextSpawn();
             p.teleport(spawn);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
         }
 
         state.setStarted();
