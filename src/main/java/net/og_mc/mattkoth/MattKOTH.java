@@ -30,10 +30,6 @@ import org.bukkit.entity.Player;
  */
 public class MattKOTH extends HostedFFA<KOTHState> {
 
-    private Game<KOTHState> game;
-
-    private Set<UUID> prizes = new HashSet<>();
-
     public MattKOTH(CloudGame plugin) {
         super(plugin, "KOTH");
     }
@@ -47,14 +43,6 @@ public class MattKOTH extends HostedFFA<KOTHState> {
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHGameListener(this), getPlugin());
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHGamePlayerListener(this), getPlugin());
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHDeathListener(this), getPlugin());
-    }
-
-    public Game<KOTHState> getGame() {
-        return game;
-    }
-
-    public void setGame(Game<KOTHState> game) {
-        this.game = game;
     }
 
     @Override
@@ -76,29 +64,5 @@ public class MattKOTH extends HostedFFA<KOTHState> {
     @Override
     public void setup(Game<KOTHState> g) {
         (new KOTHAnnouncerTask(g)).runTaskTimer(getPlugin(), 2L, 2L);
-    }
-
-    /**
-     * Adds the player to the list of people who deserve prizes.
-     *
-     * @param p
-     */
-    public void addPrize(Player p) {
-        prizes.add(p.getUniqueId());
-    }
-
-    /**
-     * Tries to redeem a prize.
-     *
-     * @param p
-     * @return
-     */
-    public boolean redeemPrize(Player p) {
-        if (!prizes.contains(p.getUniqueId())) {
-            return false;
-        }
-        prizes.remove(p.getUniqueId());
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ccrates give 3 " + p.getName() + " 3");
-        return true;
     }
 }
