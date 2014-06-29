@@ -38,8 +38,8 @@ public class LMSGameListener extends GameListener<HostedFFAState> {
         }
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            Messaging.sendBanner(p, "A KOTH on map " + ChatColor.DARK_GREEN + game.getArena().getName() + " " + ChatColor.GREEN + "has started!",
-                    "Type " + ChatColor.DARK_GREEN + "/koth spectate " + ChatColor.GREEN + "to spectate it!");
+            Messaging.sendBanner(p, "An LMS on map " + ChatColor.DARK_GREEN + game.getArena().getName() + " " + ChatColor.GREEN + "has started!",
+                    "Type " + ChatColor.DARK_GREEN + "/lms spectate " + ChatColor.GREEN + "to spectate it!");
         }
 
         HostedFFAState state = game.getState();
