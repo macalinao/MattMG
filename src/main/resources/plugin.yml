@@ -17,6 +17,10 @@ commands:
         description: KOTH command
         usage: /koth <command>
 
+    lms:
+        description: LMS command
+        usage: /lms <command>
+
 permissions:
-    mattkoth.admin:
+    mattmg.admin:
         description: Allows managing of MattKOTH.

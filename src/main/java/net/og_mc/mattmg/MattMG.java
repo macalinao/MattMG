@@ -7,6 +7,7 @@ package net.og_mc.mattmg;
 
 import net.og_mc.mattkoth.MattKOTH;
 import com.simplyian.cloudgame.CloudGame;
+import net.og_mc.mattlms.MattLMS;
 
 /**
  *
@@ -17,6 +18,7 @@ public class MattMG extends CloudGame {
     @Override
     public void addGameplays() {
         addGameplay(new MattKOTH(this));
+        addGameplay(new MattLMS(this));
     }
 
 }

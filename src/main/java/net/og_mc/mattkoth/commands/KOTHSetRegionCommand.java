@@ -30,7 +30,7 @@ public class KOTHSetRegionCommand extends PlayerCommandHandler {
 
     @Override
     public void onCommand(Player player, String[] args) {
-        if (!player.hasPermission("mattkoth.admin")) {
+        if (!player.hasPermission("mattmg.admin")) {
             koth.sendGameMessage(player, "You can't use this command.");
             return;
         }
