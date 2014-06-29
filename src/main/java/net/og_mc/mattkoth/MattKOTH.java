@@ -12,10 +12,7 @@ import com.simplyian.cloudgame.model.arena.Arena;
 import com.simplyian.cloudgame.model.region.Region;
 import net.og_mc.mattkoth.commands.KOTHCommand;
 import net.og_mc.mattkoth.listeners.KOTHCaptureListener;
-import net.og_mc.mattkoth.listeners.KOTHCommandListener;
-import net.og_mc.mattkoth.listeners.KOTHDeathListener;
 import net.og_mc.mattkoth.listeners.KOTHGameListener;
-import net.og_mc.mattkoth.listeners.KOTHGamePlayerListener;
 import net.og_mc.mattkoth.tasks.KOTHAnnouncerTask;
 
 /**
@@ -30,13 +27,12 @@ public class MattKOTH extends HostedFFA<KOTHState> {
 
     @Override
     public void onEnable() {
+        super.onEnable();
+
         getPlugin().getCommands().registerCommand("koth", new KOTHCommand(this));
 
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHCaptureListener(this), getPlugin());
-        getPlugin().getServer().getPluginManager().registerEvents(new KOTHCommandListener(this), getPlugin());
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHGameListener(this), getPlugin());
-        getPlugin().getServer().getPluginManager().registerEvents(new KOTHGamePlayerListener(this), getPlugin());
-        getPlugin().getServer().getPluginManager().registerEvents(new KOTHDeathListener(this), getPlugin());
     }
 
     @Override
