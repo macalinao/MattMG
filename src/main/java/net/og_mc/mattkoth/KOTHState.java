@@ -5,10 +5,8 @@
  */
 package net.og_mc.mattkoth;
 
-import com.simplyian.cloudgame.gameplay.states.FFAState;
-import java.util.ArrayList;
+import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import org.bukkit.Bukkit;
@@ -19,11 +17,7 @@ import org.bukkit.inventory.ItemStack;
  *
  * @author ian
  */
-public class KOTHState extends FFAState {
-
-    private UUID host;
-
-    private long start = -1;
+public class KOTHState extends HostedFFAState {
 
     private UUID capturer;
 
@@ -31,31 +25,7 @@ public class KOTHState extends FFAState {
 
     private ItemStack capturerHelmet;
 
-    private boolean over = false;
-
     private Map<UUID, Integer> secondsCaptured = new HashMap<>();
-
-    private int mins;
-
-    public Player getHost() {
-        return Bukkit.getPlayer(host);
-    }
-
-    public void setHost(Player player) {
-        host = player.getUniqueId();
-    }
-
-    public boolean isStarted() {
-        return start != -1;
-    }
-
-    public void setStarted() {
-        this.start = System.currentTimeMillis();
-    }
-
-    public long getStart() {
-        return start;
-    }
 
     public Player getCapturer() {
         return Bukkit.getPlayer(capturer);
@@ -101,11 +71,6 @@ public class KOTHState extends FFAState {
         return secondsCaptured() != -1;
     }
 
-    public int remainingTime() {
-        int secsElapsed = (((int) (System.currentTimeMillis() - start)) / 1000);
-        return (mins * 60) - secsElapsed;
-    }
-
     public ItemStack getCapturerHelmet() {
         return capturerHelmet;
     }
@@ -113,33 +78,4 @@ public class KOTHState extends FFAState {
     public void setCapturerHelmet(ItemStack capturerHelmet) {
         this.capturerHelmet = capturerHelmet;
     }
-
-    @Override
-    public List<Player> getParticipants() {
-        List<Player> participants = new ArrayList<>();
-        participants.addAll(getSpectators());
-        participants.addAll(getPlayers());
-        Player host = getHost();
-        if (host != null) {
-            participants.add(host);
-        }
-        return participants;
-    }
-
-    public boolean isOver() {
-        return over;
-    }
-
-    public void setOver() {
-        this.over = true;
-    }
-
-    public int getMins() {
-        return mins;
-    }
-
-    public void setMins(int mins) {
-        this.mins = mins;
-    }
-
 }
