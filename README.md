@@ -1,7 +1,7 @@
-# MattKOTH
-King of the hill minigame.
+# MattMG
+A bunch of minigames in one plugin.
 
-## Setup
+## Setup - KOTH
 Creating a new KOTH arena is simple with the plugin. First, use the following command:
 
 `/koth setregion <hill> <arena>`

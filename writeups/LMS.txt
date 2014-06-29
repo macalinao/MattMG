@@ -1,0 +1,19 @@
+[4:02:23 PM] Matt | Original: MattLMS --
+[4:02:39 PM] Matt | Original: Identical to KOTH except for the things listed.
+[4:07:17 PM] Matt | Original: The initial message:
+' &7&m-&8&m--------------------------------------------------&7&m-'
+' &bA LMS on map &3<map name> &bis starting in &3<count down>!'
+' &bType &3/lms join &ato join! (armor not provided)' <-- Add the (join other players) ish here too.
+' &7&m-&8&m--------------------------------------------------&7&m-'
+
+Same startup commands, same way to setmaps, same spawn.
+
+When a player dies, don't allow them to tp back (normal). When they die, send them the message &f[&3LMS&f] &bYou died with <people left in arena> left!
+During the game, have an enderbar saying '<people left> left in LMS!'
+
+Same reward, just make it /lms redeem
+
+Amd LMS means last man standing.
+[4:07:32 PM] Matt | Original: Think you need any additional information or a typeup?
+[4:07:35 PM] Matt | Original: And ofc no koth hill
+[4:07:41 PM] Matt | Original: They just kill till the last one is left.
