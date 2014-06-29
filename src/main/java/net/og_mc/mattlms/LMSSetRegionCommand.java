@@ -42,7 +42,7 @@ public class LMSSetRegionCommand extends PlayerCommandHandler {
         Arena arena = lms.getPlugin().getModelManager().getArenas().find(player, args[0]);
         if (arena == null) {
             Region arenaRegion = null;
-            if (args[1].contains(";")) {
+            if (args[0].contains(";")) {
                 arenaRegion = lms.getPlugin().getModelManager().getRegions().findById(args[0]);
             } else {
                 arenaRegion = lms.getPlugin().getModelManager().getRegions().find(player.getWorld(), args[0]);
