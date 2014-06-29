@@ -6,6 +6,7 @@
 package net.og_mc.mattlms;
 
 import com.simplyian.cloudgame.events.GameEndEvent;
+import com.simplyian.cloudgame.events.GameQuitEvent;
 import com.simplyian.cloudgame.events.GameStartEvent;
 import com.simplyian.cloudgame.events.GameStopEvent;
 import com.simplyian.cloudgame.game.Game;
@@ -91,8 +92,7 @@ public class LMSGameListener extends GameListener<HostedFFAState> {
             }
 
             for (Player player : state.getParticipants()) {
-                BarAPI.removeBar(player);
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "spawn " + player.getName());
+                Bukkit.getPluginManager().callEvent(new GameQuitEvent(game, player));
             }
         }
 
