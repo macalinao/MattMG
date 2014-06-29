@@ -10,6 +10,8 @@ import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFA;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
 import com.simplyian.cloudgame.model.arena.Arena;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -39,4 +41,10 @@ public class MattLMS extends HostedFFA<HostedFFAState> {
     public void setup(Game<HostedFFAState> g) {
         (new LMSAnnouncerTask(g)).runTaskTimer(getPlugin(), 2L, 2L);
     }
+
+    @Override
+    public void sendGameMessage(Player p, String message) {
+        p.sendMessage("[" + ChatColor.DARK_AQUA + "LMS" + ChatColor.WHITE + "] " + ChatColor.AQUA + message);
+    }
+
 }
