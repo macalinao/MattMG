@@ -35,7 +35,15 @@ public class LMSTimer extends GameTask<HostedFFAState> {
     public void run() {
         HostedFFAState state = game.getState();
 
-        // TODO add bar
+        for (Player p : state.getParticipants()) {
+            BarAPI.setMessage(p, state.getPlayers().size() + " left in LMS!");
+        }
+
+        if (state.getPlayers().size() == 1) {
+            Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
+            return;
+        }
+
         int secsLeft = game.getState().remainingTime();
         if (secsLeft <= 25 * 60 && announceCount == 0) {
             if (game.getState().getMins() > 25) {
