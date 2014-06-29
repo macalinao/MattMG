@@ -39,7 +39,7 @@ public class LMSTimer extends GameTask<HostedFFAState> {
             BarAPI.setMessage(p, state.getPlayers().size() + " left in LMS!");
         }
 
-        if (state.getPlayers().size() == 1) {
+        if (state.getPlayers().size() <= 1) {
             Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
             return;
         }
