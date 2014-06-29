@@ -7,13 +7,9 @@ package net.og_mc.mattkoth;
 
 import com.simplyian.cloudgame.CloudGame;
 import com.simplyian.cloudgame.game.Game;
-import com.simplyian.cloudgame.gameplay.Gameplay;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFA;
 import com.simplyian.cloudgame.model.arena.Arena;
 import com.simplyian.cloudgame.model.region.Region;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
 import net.og_mc.mattkoth.commands.KOTHCommand;
 import net.og_mc.mattkoth.listeners.KOTHCaptureListener;
 import net.og_mc.mattkoth.listeners.KOTHCommandListener;
@@ -21,8 +17,6 @@ import net.og_mc.mattkoth.listeners.KOTHDeathListener;
 import net.og_mc.mattkoth.listeners.KOTHGameListener;
 import net.og_mc.mattkoth.listeners.KOTHGamePlayerListener;
 import net.og_mc.mattkoth.tasks.KOTHAnnouncerTask;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 /**
  *

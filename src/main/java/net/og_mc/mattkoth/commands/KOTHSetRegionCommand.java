@@ -25,7 +25,7 @@ public class KOTHSetRegionCommand extends PlayerCommandHandler {
         this.koth = koth;
         setDescription("Sets the KOTH region.");
         setUsage("/koth setregion <region> <arena>");
-        setPermission("mattkoth.admin");
+        setPermission("mattmg.admin");
     }
 
     @Override
