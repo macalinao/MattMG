@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.og_mc.mattkoth.listeners;
+package net.og_mc.mattkoth;
 
 import com.simplyian.cloudgame.events.GameEndEvent;
 import com.simplyian.cloudgame.game.Game;

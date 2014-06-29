@@ -10,10 +10,6 @@ import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFA;
 import com.simplyian.cloudgame.model.arena.Arena;
 import com.simplyian.cloudgame.model.region.Region;
-import net.og_mc.mattkoth.commands.KOTHCommand;
-import net.og_mc.mattkoth.listeners.KOTHCaptureListener;
-import net.og_mc.mattkoth.listeners.KOTHGameListener;
-import net.og_mc.mattkoth.tasks.KOTHAnnouncerTask;
 
 /**
  *
