@@ -29,6 +29,7 @@ public class MattLMS extends HostedFFA<HostedFFAState> {
 
         getPlugin().getCommands().registerCommand("lms", new LMSCommand(this));
 
+        getPlugin().getServer().getPluginManager().registerEvents(new LMSDeathListener(this), getPlugin());
         getPlugin().getServer().getPluginManager().registerEvents(new LMSGameListener(this), getPlugin());
     }
 
