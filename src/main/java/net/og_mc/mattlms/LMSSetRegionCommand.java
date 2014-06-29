@@ -34,7 +34,7 @@ public class LMSSetRegionCommand extends PlayerCommandHandler {
             return;
         }
 
-        if (args.length <= 1) {
+        if (args.length == 0) {
             sendUsageMessage(player);
             return;
         }
