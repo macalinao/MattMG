@@ -35,8 +35,8 @@ public class KOTHGameListener extends GameListener<KOTHState> {
         }
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            getGameplay().sendBanner(p, "A KOTH on map " + ChatColor.DARK_GREEN + game.getArena().getName() + " " + ChatColor.GREEN + "has started!",
-                    "Type " + ChatColor.DARK_GREEN + "/koth spectate " + ChatColor.GREEN + "to spectate it!");
+            getGameplay().sendBanner(p, "A KOTH on map $D" + game.getArena().getName() + " $Lhas started!",
+                    "Type $D/koth spectate $Lto spectate it!");
         }
 
         KOTHState state = game.getState();

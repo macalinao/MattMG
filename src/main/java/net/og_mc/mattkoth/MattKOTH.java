@@ -7,9 +7,11 @@ package net.og_mc.mattkoth;
 
 import com.simplyian.cloudgame.CloudGame;
 import com.simplyian.cloudgame.game.Game;
+import com.simplyian.cloudgame.gameplay.ColorScheme;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFA;
 import com.simplyian.cloudgame.model.arena.Arena;
 import com.simplyian.cloudgame.model.region.Region;
+import org.bukkit.ChatColor;
 
 /**
  *
@@ -19,6 +21,7 @@ public class MattKOTH extends HostedFFA<KOTHState> {
 
     public MattKOTH(CloudGame plugin) {
         super(plugin, "KOTH");
+        setColorScheme(new ColorScheme(ChatColor.GREEN, ChatColor.DARK_GREEN, ChatColor.DARK_RED, ChatColor.RED, ChatColor.YELLOW));
     }
 
     @Override
