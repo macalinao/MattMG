@@ -7,8 +7,8 @@ package net.og_mc.mattlms;
 
 import com.simplyian.cloudgame.events.GameQuitEvent;
 import com.simplyian.cloudgame.game.Game;
+import com.simplyian.cloudgame.gameplay.GameListener;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
-import com.simplyian.cloudgame.gameplay.listeners.GameListener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.potion.PotionEffectType;
 

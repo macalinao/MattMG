@@ -10,11 +10,9 @@ import com.simplyian.cloudgame.events.GameQuitEvent;
 import com.simplyian.cloudgame.events.GameStartEvent;
 import com.simplyian.cloudgame.events.GameStopEvent;
 import com.simplyian.cloudgame.game.Game;
+import com.simplyian.cloudgame.gameplay.GameListener;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
-import com.simplyian.cloudgame.gameplay.listeners.GameListener;
-import com.simplyian.cloudgame.util.Messaging;
 import java.util.List;
-import me.confuser.barapi.BarAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -41,8 +39,8 @@ public class LMSGameListener extends GameListener<HostedFFAState> {
         }
 
         for (Player p : Bukkit.getOnlinePlayers()) {
-            getGameplay().sendBanner(p, "An LMS on map " + ChatColor.DARK_GREEN + game.getArena().getName() + " " + ChatColor.GREEN + "has started!",
-                    "Type " + ChatColor.DARK_GREEN + "/lms spectate " + ChatColor.GREEN + "to spectate it!");
+            getGameplay().sendBanner(p, "An LMS on map " + ChatColor.DARK_AQUA + game.getArena().getName() + " " + ChatColor.AQUA + "has started!",
+                    "Type " + ChatColor.DARK_AQUA + "/lms spectate " + ChatColor.AQUA + "to spectate it!");
         }
 
         HostedFFAState state = game.getState();
