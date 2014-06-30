@@ -18,6 +18,7 @@ public class LMSCommand extends FFACommand {
     public LMSCommand(MattLMS lms) {
         super(lms);
         this.lms = lms;
+        setColorScheme(lms.getColorScheme());
     }
 
     @Override

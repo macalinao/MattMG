@@ -20,6 +20,7 @@ public class KOTHCommand extends FFACommand {
     public KOTHCommand(MattKOTH koth) {
         super(koth);
         this.koth = koth;
+        setColorScheme(koth.getColorScheme());
     }
 
     @Override
