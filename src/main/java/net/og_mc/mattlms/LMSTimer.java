@@ -36,7 +36,7 @@ public class LMSTimer extends GameTask<HostedFFAState> {
         HostedFFAState state = game.getState();
 
         for (Player p : state.getParticipants()) {
-            BarAPI.setMessage(p, state.getPlayers().size() + " left in LMS!");
+            BarAPI.setMessage(p, ChatColor.AQUA + "" + state.getPlayers().size() + ChatColor.DARK_AQUA + " left in LMS!");
         }
 
         if (state.getPlayers().size() <= 1) {
