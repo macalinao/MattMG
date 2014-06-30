@@ -63,7 +63,7 @@ public class LMSAnnouncerTask extends BukkitRunnable {
 
     private void announceTime(String time) {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            Messaging.sendBanner(p,
+            game.getGameplay().sendBanner(p,
                     "An LMS on map " + ChatColor.DARK_GREEN + game.getArena().getName() + " "
                     + ChatColor.GREEN + "is starting in " + ChatColor.DARK_GREEN + time + ChatColor.GREEN + "!",
                     "Type " + ChatColor.DARK_GREEN + "/lms join " + ChatColor.GREEN + "to join "
