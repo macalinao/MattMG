@@ -10,8 +10,6 @@ import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.model.arena.Arena;
 import com.simplyian.cloudgame.util.Messaging;
 import java.lang.reflect.ParameterizedType;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
@@ -32,13 +30,12 @@ public abstract class Gameplay<T extends State> {
 
     private final String name;
 
-    private final Map<String, MessageHandler> handlers;
+    private ColorScheme colorScheme = ColorScheme.DEFAULT;
 
     protected Gameplay(CloudGame plugin, String id) {
         this.plugin = plugin;
         this.id = id.toLowerCase();
         this.name = id.toUpperCase();
-        handlers = new HashMap<>();
     }
 
     public CloudGame getPlugin() {
@@ -51,6 +48,14 @@ public abstract class Gameplay<T extends State> {
 
     public String getName() {
         return name;
+    }
+
+    public ColorScheme getColorScheme() {
+        return colorScheme;
+    }
+
+    public void setColorScheme(ColorScheme colorScheme) {
+        this.colorScheme = colorScheme;
     }
 
     /**
@@ -73,9 +78,7 @@ public abstract class Gameplay<T extends State> {
     public T newState() {
         try {
             return (T) ((Class) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0]).newInstance();
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Gameplay.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Gameplay.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -88,7 +91,7 @@ public abstract class Gameplay<T extends State> {
      * @param message
      */
     public void sendGameMessage(Player p, String message) {
-        p.sendMessage(ChatColor.DARK_RED + "[" + name + "] " + ChatColor.RED + message);
+        p.sendMessage(colorScheme.getPrefix() + "[" + name + "] " + colorScheme.getMsg() + colorScheme.replaceColors(message));
     }
 
     /**
@@ -98,27 +101,7 @@ public abstract class Gameplay<T extends State> {
      * @param message
      */
     public void sendBanner(CommandSender sender, Object... message) {
-        Messaging.sendBanner(ChatColor.GREEN, sender, message);
-    }
-
-    /**
-     * Adds a message handler to this Gameplay.
-     *
-     * @param type
-     * @param handler
-     */
-    protected void addHandler(String type, MessageHandler<T> handler) {
-        handlers.put(type.toUpperCase(), handler);
-    }
-
-    /**
-     * Gets a handler for a message.
-     *
-     * @param type
-     * @return
-     */
-    public MessageHandler<T> getHandler(String type) {
-        return handlers.get(type.toUpperCase());
+        Messaging.sendBanner(colorScheme, sender, message);
     }
 
     /**
