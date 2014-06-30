@@ -66,8 +66,8 @@ public class LMSGameListener extends GameListener<HostedFFAState> {
             game.broadcast("Game over! Nobody won!");
         } else {
             Player winner = players.get(0);
-            game.broadcast(ChatColor.YELLOW + winner.getName() + ChatColor.RED + " has won the LMS!");
-            getGameplay().sendGameMessage(winner, "To redeem your prize, type " + ChatColor.YELLOW + "/lms redeem" + ChatColor.RED + "!");
+            game.broadcast("$H" + winner.getName() + "$M has won the LMS!");
+            getGameplay().sendGameMessage(winner, "To redeem your prize, type $H/lms redeem$M!");
             ((MattLMS) getGameplay()).addPrize(winner);
         }
 
