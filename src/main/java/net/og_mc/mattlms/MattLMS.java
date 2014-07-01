@@ -47,7 +47,7 @@ public class MattLMS extends HostedFFA<HostedFFAState> {
 
     @Override
     public void sendGameMessage(Player p, String message) {
-        p.sendMessage("[" + ChatColor.DARK_AQUA + "LMS" + ChatColor.WHITE + "] " + ChatColor.AQUA + message);
+        p.sendMessage("[" + ChatColor.DARK_AQUA + "LMS" + ChatColor.WHITE + "] " + ChatColor.AQUA + getColorScheme().replaceColors(message));
     }
 
 }
