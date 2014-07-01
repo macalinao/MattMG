@@ -56,7 +56,7 @@ public class KOTHGameListener extends GameListener<KOTHState> {
             return;
         }
 
-        Player winner = game.getState().getCapturer();
+        Player winner = event.getWinner();
         if (winner == null) {
             game.broadcast("Game over! Nobody won!");
         } else {

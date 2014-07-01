@@ -61,11 +61,10 @@ public class LMSGameListener extends GameListener<HostedFFAState> {
             return;
         }
 
-        List<Player> players = game.getState().getPlayers();
-        if (players.size() != 1) {
+        Player winner = event.getWinner();
+        if (winner == null) {
             game.broadcast("Game over! Nobody won!");
         } else {
-            Player winner = players.get(0);
             game.broadcast("$H" + winner.getName() + "$M has won the LMS!");
             getGameplay().sendGameMessage(winner, "To redeem your prize, type $H/lms redeem$M!");
             ((MattLMS) getGameplay()).addPrize(winner);

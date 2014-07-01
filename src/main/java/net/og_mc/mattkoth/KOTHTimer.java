@@ -40,7 +40,7 @@ public class KOTHTimer extends GameTask<KOTHState> {
         // Put this up here so we can get rid of the bar
         int captureSecsLeft = CAPTURE_WIN_SECONDS - state.secondsCaptured();
         if (captureSecsLeft <= 0) {
-            Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
+            Bukkit.getPluginManager().callEvent(new GameEndEvent(game, state.getCapturer()));
             return;
         }
 
@@ -103,7 +103,7 @@ public class KOTHTimer extends GameTask<KOTHState> {
             announceCount++;
         } else if (secsLeft <= 0 * 60 && announceCount == 8
                 && !game.getState().isCapturing()) {
-            Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
+            Bukkit.getPluginManager().callEvent(new GameEndEvent(game, null));
             return;
         }
     }

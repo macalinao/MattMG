@@ -40,7 +40,11 @@ public class LMSTimer extends GameTask<HostedFFAState> {
         }
 
         if (state.getPlayers().size() <= 1) {
-            Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
+            Player winner = null;
+            if (state.getPlayers().size() == 1) {
+                winner = state.getPlayers().get(0);
+            }
+            Bukkit.getPluginManager().callEvent(new GameEndEvent(game, winner));
             return;
         }
 
@@ -86,7 +90,7 @@ public class LMSTimer extends GameTask<HostedFFAState> {
             }
             announceCount++;
         } else if (secsLeft <= 0 * 60 && announceCount == 8) {
-            Bukkit.getPluginManager().callEvent(new GameEndEvent(game));
+            Bukkit.getPluginManager().callEvent(new GameEndEvent(game, null));
             return;
         }
     }
