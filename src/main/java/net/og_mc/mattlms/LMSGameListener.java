@@ -13,6 +13,7 @@ import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.GameListener;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
 import java.util.List;
+import net.og_mc.mattmg.Kits;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -46,6 +47,10 @@ public class LMSGameListener extends GameListener<HostedFFAState> {
         HostedFFAState state = game.getState();
         for (Player p : state.getPlayers()) {
             Location spawn = game.getArena().getNextSpawn();
+            if (state.isEasy()) {
+                getGameplay().getPlugin().getPlayerStateManager().saveState(p);
+                Kits.loadEasyKit(p);
+            }
             p.teleport(spawn);
             p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
         }
