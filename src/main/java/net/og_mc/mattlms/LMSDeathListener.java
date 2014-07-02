@@ -29,10 +29,6 @@ public class LMSDeathListener extends GameListener<HostedFFAState> {
         if (game == null) {
             return;
         }
-
-        if (game.getState().isEasy()) {
-            getGameplay().getPlugin().getPlayerStateManager().loadState(e.getPlayer());
-        }
         e.getPlayer().removePotionEffect(PotionEffectType.INVISIBILITY);
     }
 

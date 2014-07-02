@@ -13,12 +13,15 @@ import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.GameListener;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
 import java.util.List;
+import net.og_mc.mattkoth.KOTHState;
+import net.og_mc.mattkoth.KOTHTimer;
 import net.og_mc.mattmg.Kits;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -38,69 +41,21 @@ public class LMSGameListener extends GameListener<HostedFFAState> {
         if (game == null) {
             return;
         }
-
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            getGameplay().sendBanner(p, "An LMS on map $D" + game.getArena().getName() + " $Lhas started!",
-                    "Type $D/lms spectate $Lto spectate it!");
-        }
-
         HostedFFAState state = game.getState();
         for (Player p : state.getPlayers()) {
-            Location spawn = game.getArena().getNextSpawn();
             if (state.isEasy()) {
-                getGameplay().getPlugin().getPlayerStateManager().saveState(p);
                 Kits.loadEasyKit(p);
             }
-            p.teleport(spawn);
             p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
         }
+    }
 
-        state.setStarted();
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void postGameStart(GameStartEvent event) {
+        Game<HostedFFAState> game = game(event);
+        if (game == null) {
+            return;
+        }
         (new LMSTimer(game)).runTimer();
     }
-
-    @EventHandler
-    public void onGameEnd(GameEndEvent event) {
-        Game<HostedFFAState> game = game(event);
-        if (game == null) {
-            return;
-        }
-
-        Player winner = event.getWinner();
-        if (winner == null) {
-            game.broadcast("Game over! Nobody won!");
-        } else {
-            game.broadcast("$H" + winner.getName() + "$M has won the LMS!");
-            getGameplay().sendGameMessage(winner, "To redeem your prize, type $H/lms redeem$M!");
-            ((MattLMS) getGameplay()).addPrize(winner);
-        }
-
-        game.stop();
-    }
-
-    @EventHandler
-    public void onGameStop(GameStopEvent event) {
-        Game<HostedFFAState> game = game(event);
-        if (game == null) {
-            return;
-        }
-        HostedFFAState state = game.getState();
-
-        if (!state.isStarted()) {
-            game.broadcast("The LMS has been cancelled.");
-        } else {
-            for (Player player : state.getSpectators()) {
-                getGameplay().getPlugin().getPlayerStateManager().loadState(player);
-            }
-
-            for (Player player : state.getParticipants()) {
-                Bukkit.getPluginManager().callEvent(new GameQuitEvent(game, player));
-            }
-        }
-
-        state.setOver();
-        getGameplay().getPlugin().getGameManager().removeGame(game);
-        ((MattLMS) getGameplay()).setGame(null);
-    }
-
 }
