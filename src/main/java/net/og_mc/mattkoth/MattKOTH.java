@@ -49,9 +49,4 @@ public class MattKOTH extends HostedFFA<KOTHState> {
         }
         return region != null;
     }
-
-    @Override
-    public void setup(Game<KOTHState> g) {
-        (new KOTHAnnouncerTask(g)).runTaskTimer(getPlugin(), 2L, 2L);
-    }
 }
