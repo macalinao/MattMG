@@ -36,7 +36,7 @@ public class MattKOTH extends HostedFFA<KOTHState> {
 
     @Override
     public boolean canUse(Arena arena) {
-        if (arena.getSpawns().isEmpty()) {
+        if (!super.canUse(arena)) {
             return false;
         }
         if (!arena.hasProperty("koth-hill")) {
