@@ -6,6 +6,7 @@
 package net.og_mc.mattmg;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -21,12 +22,14 @@ public class Kits {
     public static void loadEasyKit(Player p) {
         PlayerInventory inv = p.getInventory();
 
-        inv.setHelmet(new ItemStack(Material.DIAMOND_HELMET));
-        inv.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
-        inv.setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
-        inv.setBoots(new ItemStack(Material.DIAMOND_BOOTS));
+        inv.setHelmet(new ItemStack(Material.IRON_HELMET));
+        inv.setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+        inv.setLeggings(new ItemStack(Material.IRON_LEGGINGS));
+        inv.setBoots(new ItemStack(Material.IRON_BOOTS));
 
-        inv.setItem(0, new ItemStack(Material.DIAMOND_SWORD));
+        ItemStack diamondSword = new ItemStack(Material.DIAMOND_SWORD);
+        diamondSword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+        inv.setItem(0, diamondSword);
 
         Potion heal = new Potion(PotionType.INSTANT_HEAL);
         heal.setSplash(true);
