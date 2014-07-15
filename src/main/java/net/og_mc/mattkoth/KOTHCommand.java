@@ -6,7 +6,6 @@
 package net.og_mc.mattkoth;
 
 import com.simplyian.cloudgame.commands.hostedffa.FFACommand;
-import net.og_mc.mattkoth.MattKOTH;
 
 /**
  * The main command for all that shizzzzle
@@ -20,7 +19,6 @@ public class KOTHCommand extends FFACommand {
     public KOTHCommand(MattKOTH koth) {
         super(koth);
         this.koth = koth;
-        setColorScheme(koth.getColorScheme());
     }
 
     @Override
