@@ -39,4 +39,10 @@ public class MattLMS extends HostedFFA<HostedFFAState> {
         p.sendMessage("[" + ChatColor.DARK_AQUA + "LMS" + ChatColor.WHITE + "] " + ChatColor.AQUA + getColorScheme().replaceColors(message));
     }
 
+    @Override
+    public HostedFFAState newState() {
+        HostedFFAState state = super.newState();
+        state.setProvideArmor(true);
+        return state;
+    }
 }

@@ -50,4 +50,11 @@ public class MattKOTH extends HostedFFA<KOTHState> {
         }
         return region != null;
     }
+
+    @Override
+    public KOTHState newState() {
+        KOTHState state = super.newState();
+        state.setProvideArmor(false);
+        return state;
+    }
 }
