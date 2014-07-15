@@ -20,6 +20,7 @@ public class FFACommand extends TreeCommandHandler {
     public FFACommand(HostedFFA ffa) {
         super(ffa.getId());
         this.ffa = ffa;
+        setColorScheme(ffa.getColorScheme());
     }
 
     @Override
@@ -28,6 +29,7 @@ public class FFACommand extends TreeCommandHandler {
         addSubcommand("join", new FFAJoinCommand(ffa));
         addSubcommand("leave", new FFALeaveCommand(ffa));
         addSubcommand("redeem", new FFARedeemCommand(ffa));
+        addSubcommand("setregion", new FFASetRegionCommand(ffa));
         addSubcommand("setspawn", new FFASetSpawnCommand(ffa));
         addSubcommand("spectate", new FFASpectateCommand(ffa));
         addSubcommand("start", new FFAStartCommand(ffa));
