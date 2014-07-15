@@ -6,7 +6,6 @@
 package net.og_mc.mattkoth;
 
 import com.simplyian.cloudgame.CloudGame;
-import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.ColorScheme;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFA;
 import com.simplyian.cloudgame.model.arena.Arena;
@@ -18,6 +17,8 @@ import org.bukkit.ChatColor;
  * @author ian
  */
 public class MattKOTH extends HostedFFA<KOTHState> {
+
+    public static final int CAPTURE_WIN_SECONDS = 120;
 
     public MattKOTH(CloudGame plugin) {
         super(plugin, "KOTH");

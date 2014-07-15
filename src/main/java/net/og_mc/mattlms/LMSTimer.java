@@ -10,8 +10,6 @@ import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.GameTask;
 import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
 import me.confuser.barapi.BarAPI;
-import static net.og_mc.mattkoth.KOTHConstants.CAPTURE_WIN_SECONDS;
-import net.og_mc.mattkoth.KOTHState;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
