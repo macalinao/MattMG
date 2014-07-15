@@ -35,7 +35,7 @@ public class LMSGameListener extends GameListener<HostedFFAState> {
         }
         HostedFFAState state = game.getState();
         for (Player p : state.getPlayers()) {
-            if (state.isEasy()) {
+            if (state.isProvideArmor()) {
                 Kits.loadEasyKit(p);
             }
             p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));

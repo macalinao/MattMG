@@ -9,13 +9,10 @@ import com.simplyian.cloudgame.events.GameStartEvent;
 import com.simplyian.cloudgame.events.GameStopEvent;
 import com.simplyian.cloudgame.game.Game;
 import com.simplyian.cloudgame.gameplay.GameListener;
-import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
 import net.og_mc.mattmg.Kits;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 /**
  *
@@ -35,7 +32,7 @@ public class KOTHGameListener extends GameListener<KOTHState> {
         }
         KOTHState state = game.getState();
         for (Player p : state.getPlayers()) {
-            if (state.isEasy()) {
+            if (state.isProvideArmor()) {
                 Kits.loadEasyKit(p);
             }
         }
