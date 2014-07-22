@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import net.og_mc.mattkoth.MattKOTH;
 
 import com.simplyian.cloudgame.CloudGame;
+import com.simplyian.cloudgame.CloudGamePlugin;
 
 import net.og_mc.mattlms.MattLMS;
 
@@ -17,7 +18,7 @@ import net.og_mc.mattlms.MattLMS;
  *
  * @author not ian lol
  */
-public class MattMG extends JavaPlugin {
+public class MattMG extends JavaPlugin implements CloudGamePlugin {
 
     @Override
     public void onEnable() {
