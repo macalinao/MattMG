@@ -5,20 +5,25 @@
  */
 package net.og_mc.mattmg;
 
+import org.bukkit.plugin.java.JavaPlugin;
+
 import net.og_mc.mattkoth.MattKOTH;
+
 import com.simplyian.cloudgame.CloudGame;
+
 import net.og_mc.mattlms.MattLMS;
 
 /**
  *
- * @author ian
+ * @author not ian lol
  */
-public class MattMG extends CloudGame {
+public class MattMG extends JavaPlugin {
 
     @Override
-    public void addGameplays() {
-        addGameplay(new MattKOTH(this));
-        addGameplay(new MattLMS(this));
+    public void onEnable() {
+        CloudGame cloudGame = CloudGame.inst();
+        cloudGame.addGameplay(new MattKOTH(cloudGame));
+        cloudGame.addGameplay(new MattLMS(cloudGame));
     }
 
 }
