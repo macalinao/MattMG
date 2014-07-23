@@ -5,9 +5,11 @@
  */
 package net.og_mc.mattlms;
 
+import net.og_mc.mattmg.MattMG;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import pw.ian.cloudgame.CloudGame;
+import pw.ian.cloudgame.command.Commands;
 import pw.ian.cloudgame.commands.hostedffa.FFACommand;
 import pw.ian.cloudgame.gameplay.ColorScheme;
 import pw.ian.cloudgame.gameplay.hostedffa.HostedFFA;
@@ -19,8 +21,11 @@ import pw.ian.cloudgame.gameplay.hostedffa.HostedFFAState;
  */
 public class MattLMS extends HostedFFA<HostedFFAState> {
 
-    public MattLMS(CloudGame plugin) {
-        super(plugin, "LMS");
+    private final MattMG plugin;
+
+    public MattLMS(MattMG plugin) {
+        super(CloudGame.inst(), "LMS");
+        this.plugin = plugin;
         setColorScheme(new ColorScheme(ChatColor.AQUA, ChatColor.DARK_AQUA, ChatColor.DARK_AQUA, ChatColor.AQUA, ChatColor.YELLOW));
     }
 
@@ -28,7 +33,7 @@ public class MattLMS extends HostedFFA<HostedFFAState> {
     public void onEnable() {
         super.onEnable();
 
-        getPlugin().getCommands().registerCommand("lms", new FFACommand(this));
+        Commands.registerCommand(plugin, new FFACommand(this));
         getPlugin().getServer().getPluginManager().registerEvents(new LMSListener(this), getPlugin());
     }
 

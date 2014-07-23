@@ -5,8 +5,10 @@
  */
 package net.og_mc.mattkoth;
 
+import net.og_mc.mattmg.MattMG;
 import org.bukkit.ChatColor;
 import pw.ian.cloudgame.CloudGame;
+import pw.ian.cloudgame.command.Commands;
 import pw.ian.cloudgame.gameplay.ColorScheme;
 import pw.ian.cloudgame.gameplay.hostedffa.HostedFFA;
 import pw.ian.cloudgame.model.arena.Arena;
@@ -20,8 +22,11 @@ public class MattKOTH extends HostedFFA<KOTHState> {
 
     public static final int CAPTURE_WIN_SECONDS = 120;
 
-    public MattKOTH(CloudGame plugin) {
-        super(plugin, "KOTH");
+    private final MattMG plugin;
+
+    public MattKOTH(MattMG plugin) {
+        super(CloudGame.inst(), "KOTH");
+        this.plugin = plugin;
         setColorScheme(new ColorScheme(ChatColor.GREEN, ChatColor.DARK_GREEN, ChatColor.DARK_RED, ChatColor.RED, ChatColor.YELLOW));
     }
 
@@ -29,7 +34,7 @@ public class MattKOTH extends HostedFFA<KOTHState> {
     public void onEnable() {
         super.onEnable();
 
-        getPlugin().getCommands().registerCommand("koth", new KOTHCommand(this));
+        Commands.registerCommand(plugin, new KOTHCommand(this));
 
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHCaptureListener(this), getPlugin());
         getPlugin().getServer().getPluginManager().registerEvents(new KOTHGameListener(this), getPlugin());

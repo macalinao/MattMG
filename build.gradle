@@ -24,10 +24,12 @@ buildscript {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven { url 'http://repo.md-5.net/content/groups/public/' }
     maven { url 'https://oss.sonatype.org/content/groups/public/' }
     maven { url 'http://ci.frostcast.net/plugin/repository/everything' } // BarAPI
+    maven { url 'http://maven.sk89q.com/artifactory/repo/' } // sk89q
 }
 
 dependencies {

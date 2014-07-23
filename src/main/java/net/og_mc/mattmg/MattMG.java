@@ -5,12 +5,14 @@
  */
 package net.og_mc.mattmg;
 
+import net.og_mc.mattkoth.KOTHCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.og_mc.mattkoth.MattKOTH;
 
 import net.og_mc.mattlms.MattLMS;
 import pw.ian.cloudgame.CloudGame;
+import pw.ian.cloudgame.command.Commands;
 
 /**
  *
@@ -21,8 +23,8 @@ public class MattMG extends JavaPlugin {
     @Override
     public void onEnable() {
         CloudGame cloudGame = CloudGame.inst();
-        cloudGame.addGameplay(new MattKOTH(cloudGame));
-        cloudGame.addGameplay(new MattLMS(cloudGame));
+        cloudGame.addGameplay(new MattKOTH(this));
+        cloudGame.addGameplay(new MattLMS(this));
     }
 
 }
