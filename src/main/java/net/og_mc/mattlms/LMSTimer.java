@@ -5,14 +5,15 @@
  */
 package net.og_mc.mattlms;
 
-import com.simplyian.cloudgame.events.GameEndEvent;
-import com.simplyian.cloudgame.game.Game;
-import com.simplyian.cloudgame.gameplay.GameTask;
-import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
 import me.confuser.barapi.BarAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import pw.ian.cloudgame.events.GameEndEvent;
+import pw.ian.cloudgame.game.Game;
+import pw.ian.cloudgame.gameplay.GameTask;
+import pw.ian.cloudgame.gameplay.hostedffa.HostedFFAState;
+import pw.ian.cloudgame.gameplay.hostedffa.HostedFFAWinner;
 
 /**
  *
@@ -42,7 +43,7 @@ public class LMSTimer extends GameTask<HostedFFAState> {
             if (state.getPlayers().size() == 1) {
                 winner = state.getPlayers().get(0);
             }
-            Bukkit.getPluginManager().callEvent(new GameEndEvent(game, winner));
+            Bukkit.getPluginManager().callEvent(new GameEndEvent(game, new HostedFFAWinner(winner)));
             return;
         }
 

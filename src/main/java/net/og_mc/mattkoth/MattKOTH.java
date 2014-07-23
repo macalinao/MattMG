@@ -5,12 +5,12 @@
  */
 package net.og_mc.mattkoth;
 
-import com.simplyian.cloudgame.CloudGame;
-import com.simplyian.cloudgame.gameplay.ColorScheme;
-import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFA;
-import com.simplyian.cloudgame.model.arena.Arena;
-import com.simplyian.cloudgame.model.region.Region;
 import org.bukkit.ChatColor;
+import pw.ian.cloudgame.CloudGame;
+import pw.ian.cloudgame.gameplay.ColorScheme;
+import pw.ian.cloudgame.gameplay.hostedffa.HostedFFA;
+import pw.ian.cloudgame.model.arena.Arena;
+import pw.ian.cloudgame.model.region.Region;
 
 /**
  *

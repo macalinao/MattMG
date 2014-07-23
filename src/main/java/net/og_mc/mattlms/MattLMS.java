@@ -5,13 +5,13 @@
  */
 package net.og_mc.mattlms;
 
-import com.simplyian.cloudgame.CloudGame;
-import com.simplyian.cloudgame.commands.hostedffa.FFACommand;
-import com.simplyian.cloudgame.gameplay.ColorScheme;
-import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFA;
-import com.simplyian.cloudgame.gameplay.hostedffa.HostedFFAState;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import pw.ian.cloudgame.CloudGame;
+import pw.ian.cloudgame.commands.hostedffa.FFACommand;
+import pw.ian.cloudgame.gameplay.ColorScheme;
+import pw.ian.cloudgame.gameplay.hostedffa.HostedFFA;
+import pw.ian.cloudgame.gameplay.hostedffa.HostedFFAState;
 
 /**
  *
@@ -29,7 +29,6 @@ public class MattLMS extends HostedFFA<HostedFFAState> {
         super.onEnable();
 
         getPlugin().getCommands().registerCommand("lms", new FFACommand(this));
-
         getPlugin().getServer().getPluginManager().registerEvents(new LMSListener(this), getPlugin());
     }
 

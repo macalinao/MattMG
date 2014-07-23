@@ -32,16 +32,14 @@ buildscript {
 
 repositories {
     mavenCentral()
-    maven {
-        url 'http://repo.md-5.net/content/groups/public/'
-    }
-    maven {
-        url 'http://ci.frostcast.net/plugin/repository/everything'
-    }
+    maven { url 'http://repo.md-5.net/content/groups/public/' }
+    maven { url 'https://oss.sonatype.org/content/groups/public/' }
+    maven { url 'http://ci.frostcast.net/plugin/repository/everything' } // BarAPI
 }
 
 dependencies {
-    compile group: 'org.bukkit', name: 'bukkit', version: '1.7.5-R0.1-SNAPSHOT'
+    compile 'org.bukkit:bukkit:1.7.9-R0.3-SNAPSHOT'
+    compile 'pw.ian:cloudgame:0.1.0-SNAPSHOT'
     compile 'me.confuser:BarAPI:3.0'
     compile fileTree(dir: 'libs', includes: ['*.jar']) 
 }

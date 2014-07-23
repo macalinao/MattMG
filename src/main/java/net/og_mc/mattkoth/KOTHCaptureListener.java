@@ -5,10 +5,6 @@
  */
 package net.og_mc.mattkoth;
 
-import com.simplyian.cloudgame.events.GameEndEvent;
-import com.simplyian.cloudgame.game.Game;
-import com.simplyian.cloudgame.gameplay.GameListener;
-import com.simplyian.cloudgame.model.region.Region;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -18,6 +14,10 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
+import pw.ian.cloudgame.events.GameEndEvent;
+import pw.ian.cloudgame.game.Game;
+import pw.ian.cloudgame.gameplay.GameListener;
+import pw.ian.cloudgame.model.region.Region;
 
 /**
  *

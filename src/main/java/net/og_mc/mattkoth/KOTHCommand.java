@@ -5,7 +5,7 @@
  */
 package net.og_mc.mattkoth;
 
-import com.simplyian.cloudgame.commands.hostedffa.FFACommand;
+import pw.ian.cloudgame.commands.hostedffa.FFACommand;
 
 /**
  * The main command for all that shizzzzle

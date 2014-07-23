@@ -5,14 +5,14 @@
  */
 package net.og_mc.mattkoth;
 
-import com.simplyian.cloudgame.events.GameStartEvent;
-import com.simplyian.cloudgame.events.GameStopEvent;
-import com.simplyian.cloudgame.game.Game;
-import com.simplyian.cloudgame.gameplay.GameListener;
 import net.og_mc.mattmg.Kits;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import pw.ian.cloudgame.events.GameStartEvent;
+import pw.ian.cloudgame.events.GameStopEvent;
+import pw.ian.cloudgame.game.Game;
+import pw.ian.cloudgame.gameplay.GameListener;
 
 /**
  *

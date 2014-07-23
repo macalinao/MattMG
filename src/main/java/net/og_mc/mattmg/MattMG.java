@@ -9,9 +9,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.og_mc.mattkoth.MattKOTH;
 
-import com.simplyian.cloudgame.CloudGame;
-
 import net.og_mc.mattlms.MattLMS;
+import pw.ian.cloudgame.CloudGame;
 
 /**
  *

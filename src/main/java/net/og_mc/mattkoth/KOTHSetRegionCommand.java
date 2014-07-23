@@ -5,12 +5,11 @@
  */
 package net.og_mc.mattkoth;
 
-import com.simplyian.cloudgame.command.PlayerCommandHandler;
-import com.simplyian.cloudgame.model.arena.Arena;
-import com.simplyian.cloudgame.model.region.Region;
-import net.og_mc.mattkoth.MattKOTH;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import pw.ian.cloudgame.command.PlayerCommandHandler;
+import pw.ian.cloudgame.model.arena.Arena;
+import pw.ian.cloudgame.model.region.Region;
 
 /**
  *

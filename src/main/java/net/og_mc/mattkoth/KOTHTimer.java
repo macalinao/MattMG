@@ -5,15 +5,16 @@
  */
 package net.og_mc.mattkoth;
 
-import com.simplyian.cloudgame.events.GameEndEvent;
-import com.simplyian.cloudgame.game.Game;
-import com.simplyian.cloudgame.gameplay.GameTask;
 import java.util.UUID;
 import me.confuser.barapi.BarAPI;
 import static net.og_mc.mattkoth.MattKOTH.CAPTURE_WIN_SECONDS;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import pw.ian.cloudgame.events.GameEndEvent;
+import pw.ian.cloudgame.game.Game;
+import pw.ian.cloudgame.gameplay.GameTask;
+import pw.ian.cloudgame.gameplay.hostedffa.HostedFFAWinner;
 
 /**
  *
@@ -39,7 +40,7 @@ public class KOTHTimer extends GameTask<KOTHState> {
         // Put this up here so we can get rid of the bar
         int captureSecsLeft = CAPTURE_WIN_SECONDS - state.secondsCaptured();
         if (captureSecsLeft <= 0) {
-            Bukkit.getPluginManager().callEvent(new GameEndEvent(game, state.getCapturer()));
+            Bukkit.getPluginManager().callEvent(new GameEndEvent(game, new HostedFFAWinner<KOTHState>(state.getCapturer())));
             return;
         }
 
