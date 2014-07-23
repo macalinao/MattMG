@@ -5,14 +5,12 @@
  */
 package net.og_mc.mattmg;
 
-import net.og_mc.mattkoth.KOTHCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.og_mc.mattkoth.MattKOTH;
 
 import net.og_mc.mattlms.MattLMS;
 import pw.ian.cloudgame.CloudGame;
-import pw.ian.cloudgame.command.Commands;
 
 /**
  *

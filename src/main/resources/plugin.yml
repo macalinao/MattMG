@@ -5,14 +5,9 @@ author: AlbireoX
 website: http://og-mc.net/
 
 main: net.og_mc.mattmg.MattMG
-depend: [CloudGame, WorldGuard]
+depend: [CloudGame]
 
 commands:
-    arena:
-        description: Allows management of arenas
-        permission: cloudgame.admin
-        usage: /arena <subcommand> [args]
-
     koth:
         description: KOTH command
         usage: /koth <command>
