@@ -7,9 +7,9 @@ package net.og_mc.mattkoth;
 
 import net.og_mc.mattmg.MattMG;
 import org.bukkit.ChatColor;
+import pw.ian.albkit.command.Commands;
+import pw.ian.albkit.util.ColorScheme;
 import pw.ian.cloudgame.CloudGame;
-import pw.ian.cloudgame.command.Commands;
-import pw.ian.cloudgame.gameplay.ColorScheme;
 import pw.ian.cloudgame.gameplay.hostedffa.HostedFFA;
 import pw.ian.cloudgame.model.arena.Arena;
 import pw.ian.cloudgame.model.region.Region;

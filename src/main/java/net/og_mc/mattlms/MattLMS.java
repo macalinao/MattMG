@@ -8,10 +8,10 @@ package net.og_mc.mattlms;
 import net.og_mc.mattmg.MattMG;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import pw.ian.albkit.command.Commands;
+import pw.ian.albkit.util.ColorScheme;
 import pw.ian.cloudgame.CloudGame;
-import pw.ian.cloudgame.command.Commands;
 import pw.ian.cloudgame.commands.hostedffa.FFACommand;
-import pw.ian.cloudgame.gameplay.ColorScheme;
 import pw.ian.cloudgame.gameplay.hostedffa.HostedFFA;
 import pw.ian.cloudgame.gameplay.hostedffa.HostedFFAState;
 
