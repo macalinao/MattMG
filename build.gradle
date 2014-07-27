@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
-  compile 'pw.ian:cloudgame:0.1.0-SNAPSHOT'
+  compile('pw.ian:cloudgame:0.1.0-SNAPSHOT') {
+    exclude module: 'albkit'
+  }
 }
 
