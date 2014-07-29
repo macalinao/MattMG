@@ -43,10 +43,12 @@ public abstract class Timer<T extends State> extends GameTask<T> {
         // Expect that the times are in length order
         int secsRemaining = length - (((int) (System.currentTimeMillis() - start)) / 1000);
 
-        if (secsRemaining <= 0 && current < 0) {
-            onEnd();
-            cancel();
-            return;
+        if (current < 0) {
+            if (secsRemaining <= 0) {
+                onEnd();
+                cancel();
+                return;
+            }
         }
 
         int nextSecs = times.get(current);
