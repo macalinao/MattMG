@@ -49,12 +49,12 @@ public abstract class Timer<T extends State> extends GameTask<T> {
                 cancel();
                 return;
             }
-        }
-
-        int nextSecs = times.get(current);
-        if (secsRemaining <= nextSecs) {
-            onCheckpoint(nextSecs, messages.get(nextSecs));
-            current--;
+        } else {
+            int nextSecs = times.get(current);
+            if (secsRemaining <= nextSecs) {
+                onCheckpoint(nextSecs, messages.get(nextSecs));
+                current--;
+            }
         }
     }
 
