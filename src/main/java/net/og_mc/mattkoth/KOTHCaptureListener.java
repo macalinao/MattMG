@@ -33,13 +33,13 @@ public class KOTHCaptureListener extends GameListener<KOTHState> {
 
     @EventHandler(ignoreCancelled = true)
     public void onInitialCapture(PlayerMoveEvent e) {
-        Game<KOTHState> game = game(e.getPlayer());
-        if (game == null || !game.getState().isStarted()
-                || (game.getState().getCapturer() != null)) {
+        if (e.getFrom().getBlock().equals(e.getTo().getBlock())) {
             return;
         }
 
-        if (e.getFrom().getBlock().equals(e.getTo().getBlock())) {
+        Game<KOTHState> game = game(e.getPlayer());
+        if (game == null || !game.getState().isStarted()
+                || (game.getState().getCapturer() != null)) {
             return;
         }
 
@@ -66,20 +66,19 @@ public class KOTHCaptureListener extends GameListener<KOTHState> {
             setCapturer(game, usurper);
         } else {
             setCapturer(game, null);
-            return;
         }
     }
 
     @EventHandler
     public void onCapturerKnockedOut(PlayerMoveEvent e) {
+        if (e.getFrom().getBlock().equals(e.getTo().getBlock())) {
+            return;
+        }
+
         Game<KOTHState> game = game(e.getPlayer());
         if (game == null || !game.getState().isStarted()
                 || (game.getState().getCapturer() == null)
                 || !game.getState().getCapturer().equals(e.getPlayer())) {
-            return;
-        }
-
-        if (e.getFrom().getBlock().equals(e.getTo().getBlock())) {
             return;
         }
 
