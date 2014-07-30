@@ -19,6 +19,10 @@ apply from: 'bootstrap/bukkit_plugin.gradle'
 
 defaultTasks 'clean', 'copyPlugin', 'install'
 
+configurations.all {
+  resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
 repositories {
   mavenLocal()
   mavenCentral()
