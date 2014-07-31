@@ -1,0 +1,45 @@
+/**
+ * bukkit-bootstrap (c) 2013-2014 Ian Macalinao
+ */
+buildscript {
+  repositories {
+    mavenCentral()
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'org.ajoberstar:gradle-git:0.9.0'
+    classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
+  }
+}
+
+import org.ajoberstar.grgit.*
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+ext.repo = Grgit.open(project.file('.'))
+
+repositories {
+  mavenCentral()
+  maven {
+    url 'http://repo.md-5.net/content/groups/public/'
+  }
+}
+
+dependencies {
+  compile 'org.bukkit:bukkit:1.7.9-R0.3-SNAPSHOT'
+}
+
+processResources {
+  from('src/main/resources') {
+    include '*'
+    filter {
+      it.replace('$version', version + '-g' + repo.head().abbreviatedId);
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.0'
+}
