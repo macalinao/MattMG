@@ -121,7 +121,7 @@ public class KOTHCaptureListener extends GameListener<KOTHState> {
 
         if (state.remainingTime() < 0) {
             state.setCapturer(null);
-            Bukkit.getPluginManager().callEvent(new GameEndEvent(game, null));
+            game.events().end(null);
             return;
         }
 
